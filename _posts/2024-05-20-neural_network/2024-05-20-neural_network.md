@@ -1,3 +1,10 @@
+---
+layout: post
+title:  "Nueral Network"
+---
+
+
+
 > ### EEE3314: Introduction to Artificial Intelligence
 
 # Assignment III:  Neural Networks
