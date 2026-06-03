@@ -1,0 +1,7 @@
+github_users:
+  - your-github # TODO: replace with your GitHub username
+
+repo_description_lines_max: 2
+
+github_repos:
+  - your-github/your-repo # TODO: replace with your pinned repositories

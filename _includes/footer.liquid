@@ -1,0 +1,44 @@
+{% comment %}
+  Editorial footer override.
+  - About page (layout: about) renders its own footer inline — skip here.
+  - Other pages get a slim flowing footer (no fixed-bottom overlap).
+{% endcomment %}
+
+{% unless page.layout == 'about' %}
+  <footer class="ed-page-footer" role="contentinfo">
+    <div class="container">
+      <span class="ed-page-footer-text">
+        © {{ site.time | date: '%Y' }}
+        {{ site.first_name }}
+        {{ site.last_name }}
+        {%- if site.last_updated %} · Last updated {{ site.time | date: '%b %Y' }}{% endif -%}
+      </span>
+    </div>
+  </footer>
+{% endunless %}
+
+{% comment %} Working "자세히 보기" (show details) toggle for bibliography abstracts. {% endcomment %}
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll("a.abstract.btn").forEach(function (btn) {
+      var entry = btn.closest("li") || btn.parentElement;
+      var content = entry.querySelector("div.abstract");
+      if (!content) return;
+      var closed = "Show details";
+      var open = "Hide details";
+      // Control visibility with an inline style (reliable against Tailwind's
+      // layered .hidden utility); drop the class so it can't interfere.
+      content.classList.remove("hidden");
+      content.style.display = "none";
+      btn.textContent = closed;
+      btn.setAttribute("href", "javascript:void(0)");
+      btn.setAttribute("role", "button");
+      btn.addEventListener("click", function (e) {
+        e.preventDefault();
+        var isHidden = content.style.display === "none";
+        content.style.display = isHidden ? "block" : "none";
+        btn.textContent = isHidden ? open : closed;
+      });
+    });
+  });
+</script>

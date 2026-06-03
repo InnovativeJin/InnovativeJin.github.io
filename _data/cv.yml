@@ -1,0 +1,124 @@
+cv:
+  name: Hyukjin Kim
+  label: M.S. Candidate · Computer Vision
+  email: ekaterina9@yonsei.ac.kr
+  phone: ""
+  location: Seoul, Republic of Korea
+  image: ""
+  summary: >
+    M.S. candidate at the Computer Vision Lab, Yonsei University. Research interests
+    include open-vocabulary object detection, vision-language models, and multimodal
+    learning. B.S. in Electrical & Electronic Engineering from Yonsei University.
+
+  social_networks:
+    - network: GitHub
+      username: your-github # TODO: replace with your GitHub username
+    - network: LinkedIn
+      username: your-linkedin # TODO: replace with your LinkedIn username
+
+  sections:
+    Education:
+      - institution: Yonsei University
+        location: Seoul, Republic of Korea
+        url: https://cvlab.yonsei.ac.kr
+        area: Computer Vision Lab
+        studyType: M.S.
+        start_date: 2025-09
+        end_date: Present
+        highlights:
+          - Advised by Prof. [Advisor Name]. Research on open-vocabulary object detection, vision-language models, and multimodal learning.
+
+      - institution: Yonsei University
+        location: Seoul, Republic of Korea
+        area: Electrical & Electronic Engineering
+        studyType: B.S.
+        start_date: 2023-03
+        end_date: 2025-08
+        highlights:
+          - "GPA 3.80 / 4.30."
+          - "Graduation research on open-vocabulary object detection — EE-Festival Most Popular Award (3rd place)."
+
+      - institution: Inha University
+        location: Incheon, Republic of Korea
+        area: Electrical Engineering
+        studyType: B.S. (transferred)
+        start_date: 2019-03
+        end_date: 2023-02
+        highlights:
+          - "GPA 4.10 / 4.50. Transferred to Yonsei University in 2023."
+
+    Awards:
+      - title: Most Popular Award (3rd place)
+        date: 2024-11-01
+        awarder: EE-Festival, Yonsei University
+        summary: For graduation research on improving open-vocabulary object detection.
+
+      - title: Academic Excellence Award
+        date: 2024-02-01
+        awarder: Yonsei University
+        summary: For academic performance in the 2023 Fall semester.
+
+      - title: Outstanding Study-Group Team
+        date: 2023-07-01
+        awarder: Yonsei University
+
+      - title: Academic Excellence Award
+        date: 2022-06-01
+        awarder: Inha University
+        summary: For academic performance in the 2022 Spring semester.
+
+      - title: Academic Excellence Award
+        date: 2019-06-01
+        awarder: Inha University
+        summary: For academic performance in the 2019 Spring semester.
+
+    Projects:
+      - name: Improving Open-Vocabulary Object Detection via Knowledge Distillation
+        url: /assets/pdf/graduation_research.pdf
+        summary: "Graduation Research (with Junghyun Park) · Yonsei University · 🏆 EE-Festival Most Popular Award (3rd place)."
+        highlights:
+          - Built on the BARON baseline; identified its limitations and applied knowledge distillation to surpass baseline performance.
+
+      - name: Self-Supervised Image Classification with SwAV
+        url: /assets/pdf/swav_final_report.pdf
+        summary: "Deep Learning, Final Project · Yonsei University."
+        highlights:
+          - Online clustering with the Sinkhorn–Knopp algorithm on a ResNet-18 backbone; transferred a pretext-trained network to CIFAR-100 classification.
+
+      - name: "Deep Learning Lab — 12 Implementation Projects"
+        summary: "Deep Learning · Yonsei University."
+        highlights:
+          - "VGG/ResNet, Spatial Transformer Network, FSRCNN, FCN, RetinaNet (Focal Loss), Grad-CAM, neural style transfer, DCGAN, CycleGAN, Seq2Seq with attention, network quantization, and self-supervised learning (SwAV)."
+
+      - name: "Foundations of AI — ML Algorithms from Scratch"
+        summary: "Introduction to AI · Yonsei University."
+        highlights:
+          - "Lasso/Ridge regression, Decision Tree and AdaBoost, and modular neural networks — implemented without ML libraries."
+
+    Skills:
+      - name: Programming
+        level: Advanced
+        icon: fa-solid fa-code
+        keywords: "Python, PyTorch, NumPy, Git, Linux"
+
+      - name: Deep Learning
+        level: Advanced
+        icon: fa-solid fa-brain
+        keywords: "Object Detection, Vision-Language Models, Generative Models, Self-Supervised Learning"
+
+    Languages:
+      - name: Korean
+        summary: "Native speaker"
+
+      - name: English
+        summary: "TOEIC 895"
+
+    Interests:
+      - name: Research interests
+        icon: fa-solid fa-eye
+        keywords:
+          - Person ReID
+          - Multimodal Learning
+          - Vision-Language Models
+          - Open-Vocabulary Object Detection
+          - Deep Learning
