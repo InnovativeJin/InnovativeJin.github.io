@@ -2,7 +2,7 @@ cv:
   name: Hyukjin Kim
   label: M.S. Candidate · Computer Vision
   email: ekaterina9@yonsei.ac.kr
-  phone: ""
+  phone: "+82 010.8621.4609"
   location: Seoul, Republic of Korea
   image: ""
   summary: >
@@ -26,7 +26,7 @@ cv:
         start_date: 2025-09
         end_date: Present
         highlights:
-          - Advised by Prof. [Advisor Name]. Research on open-vocabulary object detection, vision-language models, and multimodal learning.
+          - Advised by Prof. Bumsub Ham. Research on open-vocabulary object detection, vision-language models, and multimodal learning.
 
       - institution: Yonsei University
         location: Seoul, Republic of Korea
