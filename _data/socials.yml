@@ -2,8 +2,5 @@
 # the socials will be displayed in the order they are defined here
 # for more information, please refer to the documentation of jekyll-socials plugin: https://github.com/george-gca/jekyll-socials
 email: ekaterina9@yonsei.ac.kr
-github_username: your-github # TODO: replace with your GitHub username
-linkedin_username: your-linkedin # TODO: replace with your LinkedIn username
-scholar_userid: # TODO: add your Google Scholar user id
-# orcid_id: 0000-0000-0000-0000
-rss_icon: true
+linkedin_username: hyukjin-kim-bb3372402
+rss_icon: false

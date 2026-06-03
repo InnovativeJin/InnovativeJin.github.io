@@ -11,10 +11,8 @@ cv:
     learning. B.S. in Electrical & Electronic Engineering from Yonsei University.
 
   social_networks:
-    - network: GitHub
-      username: your-github # TODO: replace with your GitHub username
     - network: LinkedIn
-      username: your-linkedin # TODO: replace with your LinkedIn username
+      username: hyukjin-kim-bb3372402
 
   sections:
     Education:
