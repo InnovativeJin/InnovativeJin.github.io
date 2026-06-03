@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: M.S. Candidate, <a href='https://cvlab.yonsei.ac.kr'>Computer Vision Lab, Yonsei University</a> · Student Researcher at <a href='https://vig.kist.re.kr'>Visual Intelligence Group, KIST</a>
+subtitle: M.S. Candidate, <a href='https://cvlab.yonsei.ac.kr'>Computer Vision Lab, Yonsei University</a><br>Student Researcher at <a href='https://vig.kist.re.kr'>Visual Intelligence Group, KIST</a>
 
 profile:
   align: right
