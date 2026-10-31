@@ -1,14 +1,14 @@
 {% comment %}
-  Editorial header override.
-  - Always show the brand (even on /), per the editorial PDF design.
-  - Keep al-folio's progressive enhancement otherwise.
+  Gallery header override.
+  - Always show the brand (the owner's name) even on /.
+  - Keep al-folio's progressive enhancement otherwise; styling lives in _sass/_navbar.scss.
 {% endcomment %}
 
 <header>
   <!-- Nav Bar -->
   <nav id="navbar" class="navbar navbar-light navbar-expand-sm {% if site.navbar_fixed %}fixed-top{% else %}sticky-top{% endif %}" role="navigation">
     <div class="container">
-      <a class="navbar-brand" href="{{ site.baseurl }}/">
+      <a class="navbar-brand" href="{% if page.permalink == '/' %}#about{% else %}{{ '/' | relative_url }}{% endif %}">
         {% if site.title == 'blank' %}
           {%- if site.first_name -%}{{ site.first_name }}{%- endif -%}
           {%- if site.middle_name %} {{ site.middle_name }}{%- endif -%}
@@ -41,13 +41,20 @@
 
           <!-- About -->
           <li class="nav-item {% if page.permalink == '/' %}active{% endif %}">
-            <a class="nav-link" href="{{ '/' | relative_url }}">
+            <a class="nav-link" href="{% if page.permalink == '/' %}#about{% else %}{{ '/' | relative_url }}{% endif %}">
               {{- about_title }}
               {% if page.permalink == '/' -%}
                 <span class="sr-only">(current)</span>
               {%- endif %}
             </a>
           </li>
+
+          <!-- Home-page sections (anchors; see site.home_nav in _config.yml) -->
+          {% for item in site.home_nav %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{ '/' | relative_url }}#{{ item.anchor }}">{{ item.title }}</a>
+            </li>
+          {% endfor %}
 
           <!-- Other pages -->
           {% assign sorted_pages = site.pages | sort: 'nav_order' %}

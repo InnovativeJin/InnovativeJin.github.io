@@ -1,104 +1,182 @@
 ---
 layout: default
 ---
-<div class="editorial-about">
-  <section class="ed-hero">
-    <div class="ed-eyebrow">About</div>
-    <h1 class="ed-hero-title">
-      {{ site.first_name }}
-      {{ site.last_name }}
-      {% if site.first_name_ko or site.last_name_ko %}
-        <span class="ed-name-ko">
-          {{- site.first_name_ko -}}
-          {{- site.last_name_ko -}}
-        </span>
+{% comment %}
+  Gallery home page: a stack of full-bleed tiles.
+  hero (canvas) → research (dark) → projects (parchment) → publications (canvas) → news (dark) → footer (parchment)
+  The nav's Research / Projects / Publications items are anchors to these sections (site.home_nav in _config.yml).
+  Content comes from _pages/about.md front matter (statement, ctas, research.*),
+  the page body (bio), _bibliography/projects.bib and papers.bib (selected) and _news/.
+{% endcomment %}
+<div class="g-home">
+  <!-- Hero -->
+  <section class="g-tile g-hero" id="about">
+    <div class="g-tile__inner">
+      <h1 class="g-hero__name">
+        {{- site.first_name }}
+        {% if site.middle_name %}{{ site.middle_name }} {% endif -%}
+        {{- site.last_name -}}
+      </h1>
+      {% if page.subtitle %}
+        <p class="g-hero__sub">{{ page.subtitle }}</p>
       {% endif %}
-    </h1>
-    {% if page.subtitle %}
-      <p class="ed-subtitle">{{ page.subtitle }}</p>
-    {% endif %}
-  </section>
-
-  <section class="ed-bio">
-    <aside class="ed-bio-left">
+      {% if page.statement %}
+        <p class="g-hero__statement">{{ page.statement }}</p>
+      {% endif %}
       {% if page.profile.image %}
-        {% assign profile_image_path = page.profile.image | prepend: 'assets/img/' %}
-        {% capture sizes %}(min-width: 1024px) 180px, (min-width: 576px) 30vw, 60vw{% endcapture %}
-        {%
-          include figure.liquid
-          loading="eager"
-          path=profile_image_path
-          class="ed-profile-img"
-          sizes=sizes
-          alt=page.profile.image
-          cache_bust=true
-        %}
+        <div class="g-hero__photo">
+          {% assign profile_image_path = page.profile.image | prepend: 'assets/img/' %}
+          {% assign profile_alt = page.profile.image_alt | default: 'Portrait' %}
+          {%
+            include figure.liquid
+            loading="eager"
+            path=profile_image_path
+            class="g-hero__img"
+            sizes="240px"
+            alt=profile_alt
+            cache_bust=true
+          %}
+        </div>
       {% endif %}
-      {% if page.profile.more_info %}
-        <div class="ed-affiliation">{{ page.profile.more_info }}</div>
+      {% if page.ctas %}
+        <div class="g-tile__ctas g-hero__ctas">
+          {% for cta in page.ctas %}
+            {% if cta.url contains '://' or cta.url contains 'mailto:' %}
+              {% assign cta_url = cta.url %}
+            {% else %}
+              {% assign cta_url = cta.url | relative_url %}
+            {% endif %}
+            <a class="g-btn g-btn--{{ cta.style | default: 'ghost' }}" href="{{ cta_url }}">{{ cta.label }}</a>
+          {% endfor %}
+        </div>
       {% endif %}
-    </aside>
-    <div class="ed-bio-right">
-      <div class="ed-bio-body">{{ content }}</div>
+      {% if page.links %}
+        <ul class="g-hero__links">
+          {% if site.data.socials.scholar_userid %}
+            <li><a href="https://scholar.google.com/citations?user={{ site.data.socials.scholar_userid }}">Google Scholar</a></li>
+          {% endif %}
+          {% if site.data.socials.github_username %}
+            <li><a href="https://github.com/{{ site.data.socials.github_username }}">GitHub</a></li>
+          {% endif %}
+          {% if site.data.socials.linkedin_username %}
+            <li><a href="https://www.linkedin.com/in/{{ site.data.socials.linkedin_username }}">LinkedIn</a></li>
+          {% endif %}
+        </ul>
+      {% endif %}
+      {% if content != blank %}
+        <div class="g-hero__bio">{{ content }}</div>
+      {% endif %}
     </div>
   </section>
 
-  {% if page.announcements and page.announcements.enabled %}
-    <section class="ed-section ed-section-news">
-      <header class="ed-section-head">
-        <span class="ed-num">01</span>
-        <a href="{{ '/news/' | relative_url }}" class="ed-section-title"> News <span class="ed-arrow">→</span> </a>
-      </header>
-      <div class="ed-news-list">
-        {% assign news = site.news | reverse %}
-        {% assign news_limit = page.announcements.limit | default: 10 %}
-        {% for item in news limit: news_limit %}
-          {% assign first_line = item.content | strip_html | strip %}
-          <div class="ed-news-row">
-            <div class="ed-news-date">{{ item.date | date: '%b %d, %Y' }}</div>
-            <div class="ed-news-body">{{ item.content | remove_first: '<p>' | replace_first: '</p>', '' | strip }}</div>
-            {% if item.tag %}
-              <div class="ed-news-tag">{{ item.tag }}</div>
-            {% else %}
-              <div class="ed-news-tag">NEWS</div>
+  <!-- Research -->
+  {% if page.research %}
+    <section class="g-tile g-tile--dark" id="research">
+      <div class="g-tile__inner">
+        <h2 class="g-tile__headline">{{ page.research.headline | default: 'Research' }}</h2>
+        {% if page.research.lead %}
+          <p class="g-tile__lead">{{ page.research.lead }}</p>
+        {% endif %}
+        {% if page.research.body %}
+          <div class="g-tile__body">{{ page.research.body | markdownify }}</div>
+        {% endif %}
+        {% if page.research.questions %}
+          <div class="g-questions">
+            {% if page.research.questions_intro %}
+              <p class="g-questions__intro">{{ page.research.questions_intro }}</p>
             {% endif %}
+            <ol class="g-questions__list">
+              {% for q in page.research.questions %}
+                <li class="g-questions__item">
+                  <span class="g-questions__num">{{ forloop.index }}</span>
+                  <p class="g-questions__text">{{ q }}</p>
+                </li>
+              {% endfor %}
+            </ol>
           </div>
-        {% endfor %}
+        {% endif %}
       </div>
     </section>
   {% endif %}
 
+  <!-- Projects: three fixed groups, read from projects.bib by `category` -->
+  {% if page.projects %}
+    <section class="g-tile g-tile--parchment" id="projects">
+      <div class="g-tile__inner">
+        <h2 class="g-tile__headline">Projects</h2>
+        {% if page.projects_lead %}
+          <p class="g-tile__lead">{{ page.projects_lead }}</p>
+        {% endif %}
+        {% assign groups = page.projects_groups %}
+        <div class="g-projects">
+          <section class="g-projects__group">
+            <h3 class="g-projects__heading">{{ groups[0].title | default: 'Research experience' }}</h3>
+            <div class="publications">
+              {% bibliography --file projects --group_by none --query @*[category=research] %}
+            </div>
+          </section>
+          <section class="g-projects__group">
+            <h3 class="g-projects__heading">{{ groups[1].title | default: 'Capstone' }}</h3>
+            <div class="publications">
+              {% bibliography --file projects --group_by none --query @*[category=capstone] %}
+            </div>
+          </section>
+          <section class="g-projects__group">
+            <h3 class="g-projects__heading">{{ groups[2].title | default: 'Course projects' }}</h3>
+            <div class="publications">
+              {% bibliography --file projects --group_by none --query @*[category=course] %}
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+  {% endif %}
+
+  <!-- Selected publications -->
   {% if page.selected_papers %}
-    <section class="ed-section ed-section-pubs">
-      <header class="ed-section-head">
-        <span class="ed-num">02</span>
-        <a href="{{ '/publications/' | relative_url }}" class="ed-section-title"> Selected publications <span class="ed-arrow">→</span> </a>
-      </header>
-      <div class="ed-pubs-wrap">
-        {% bibliography --group_by none --query @*[selected=true]* %}
-      </div>
-    </section>
-
-    <section class="ed-section ed-section-pubs">
-      <header class="ed-section-head">
-        <span class="ed-num">03</span>
-        <a href="{{ '/projects/' | relative_url }}" class="ed-section-title"> Projects <span class="ed-arrow">→</span> </a>
-      </header>
-      <div class="ed-pubs-wrap">
-        {% bibliography --file projects --group_by none --query @*[selected=true]* %}
+    <section class="g-tile" id="publications">
+      <div class="g-tile__inner">
+        <h2 class="g-tile__headline">Publications</h2>
+        {% if page.publications_lead %}
+          <p class="g-tile__lead">{{ page.publications_lead }}</p>
+        {% endif %}
+        <div class="g-pubs">
+          <div class="publications">
+            {% bibliography --group_by none --query @*[selected=true]* %}
+          </div>
+        </div>
+        <div class="g-tile__ctas">
+          <a class="g-btn g-btn--ghost" href="{{ '/publications/' | relative_url }}">All publications</a>
+        </div>
       </div>
     </section>
   {% endif %}
 
-  <footer class="ed-footer">
-    <div class="ed-copyright">
-      © {{ site.time | date: '%Y' }}
-      {{ site.first_name }}
-      {{ site.last_name }}
-      {%- if site.last_updated %} · Last updated {{ site.time | date: '%b %Y' }}{% endif -%}
-    </div>
-    {% if page.social %}
-      <div class="ed-social">{% social_links %}</div>
-    {% endif %}
-  </footer>
+  <!-- News -->
+  {% if page.announcements and page.announcements.enabled %}
+    <section class="g-tile g-tile--dark" id="news">
+      <div class="g-tile__inner">
+        <h2 class="g-tile__headline">News</h2>
+        <ul class="g-news">
+          {% assign news = site.news | reverse %}
+          {% assign news_limit = page.announcements.limit | default: 5 %}
+          {% for item in news limit: news_limit %}
+            <li class="g-news__item">
+              <span class="g-news__date">{{ item.date | date: '%b %Y' }}</span>
+              <div class="g-news__body">
+                {% if item.inline %}
+                  {{ item.content | remove: '<p>' | remove: '</p>' | emojify }}
+                {% else %}
+                  <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
+                {% endif %}
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+        <div class="g-tile__ctas">
+          <a class="g-btn g-btn--ghost" href="{{ '/news/' | relative_url }}">All news</a>
+        </div>
+      </div>
+    </section>
+  {% endif %}
 </div>

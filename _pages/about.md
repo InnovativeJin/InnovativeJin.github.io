@@ -2,57 +2,67 @@
 layout: about
 title: about
 permalink: /
-subtitle: M.S. Candidate · <a href='https://cvlab.yonsei.ac.kr'>Computer Vision Lab, Yonsei University</a> · <a href='https://vig.kist.re.kr'>Visual Intelligence Group, KIST</a>
+subtitle: M.S. candidate · <a href="https://vig.kist.re.kr">Visual Intelligence Group, KIST</a> · <a href="https://cvlab.yonsei.ac.kr">Computer Vision Lab, Yonsei University</a>
+
+# ── Everything shown on the home page is edited here. ─────────────────────────
+# ctas      : the pill buttons under the photo. style: ghost (outline, fills blue on hover) | primary (filled)
+# links     : true adds a small GitHub / LinkedIn text row (read from _data/socials.yml)
+# research  : the dark tile — headline, one-sentence lead and the guiding questions
+# projects  : true shows _bibliography/projects.bib in the groups listed under projects_groups
+# ─────────────────────────────────────────────────────────────────────────────
+
+ctas:
+  - label: CV
+    url: /assets/pdf/Hyukjin_Kim_CV.pdf # opens the PDF; replace the file to update
+    style: ghost
+  - label: Email
+    url: mailto:hyuk_jin@yonsei.ac.kr
+    style: ghost
+  - label: LinkedIn
+    url: https://www.linkedin.com/in/hyukjin-kim-bb3372402
+    style: ghost
+  - label: GitHub
+    url: https://github.com/InnovativeJin
+    style: ghost
+
+links: false # the four buttons above cover the profile links; set true for a small GitHub / LinkedIn text row
 
 profile:
-  align: right
   image: prof_pic.jpg
-  image_circular: false # crops the image to make it circular
-  more_info: >
-    <p>Visual Intelligence Group</p>
-    <p>Korea Institute of Science and Technology</p>
-    <p>Seoul, Republic of Korea</p>
+  image_alt: Hyukjin Kim
 
-selected_papers: true # includes a list of papers marked as "selected={true}"
-social: true # includes social icons at the bottom of the page
+research:
+  headline: Research interests
+  # A direction, not a record — the CV's wording ("aims to"). Keep it to one sentence.
+  lead: >
+    My research aims to develop multimodal models that understand how agents interact with
+    objects and predict the physical consequences of their actions.
+  questions_intro: Two questions guide this direction.
+  questions:
+    - How can multimodal models learn representations of physical scenes and human actions that generalize across environments?
+    - How can models use these representations to reason about the physical consequences of actions?
+
+# Projects: entries in _bibliography/projects.bib, grouped by their `category` field and listed top to bottom.
+# Each row shows title + institution + period; the bullet points open with the "Show details" button.
+projects_groups:
+  - title: Research experience
+    category: research
+  - title: Capstone
+    category: capstone
+  - title: Course projects
+    category: course
+projects: true # entries marked selected={true} in _bibliography/projects.bib
+selected_papers: true # papers marked selected={true} in _bibliography/papers.bib
+social: false # contact links live in the hero row and the footer
 
 announcements:
-  enabled: true # includes a list of news items
-  scrollable: true # adds a vertical scroll bar if there are more than 3 news items
-  limit: 5 # leave blank to include all the news in the `_news` folder
-
-latest_posts:
-  enabled: false
-  scrollable: true # adds a vertical scroll bar if there are more than 3 new posts items
-  limit: 3 # leave blank to include all the blog posts
+  enabled: true
+  limit: 5
 ---
 
-I am an M.S. candidate in the **YU–KIST cooperative graduate program**, jointly advised by **Dr.&nbsp;Heeseung Choi** at the [Visual Intelligence Group, KIST](https://vig.kist.re.kr) and **Prof.&nbsp;Bumsub Ham** at the [Computer Vision Lab, Yonsei University](https://cvlab.yonsei.ac.kr). My research is conducted at KIST.
+I am an M.S. candidate in the **YU–KIST cooperative graduate program**,<br>
+jointly advised by **Dr.&nbsp;Heeseung Choi** at the [Visual Intelligence Group, KIST](https://vig.kist.re.kr)<br>
+and **Prof.&nbsp;Bumsub Ham** at the [Computer Vision Lab, Yonsei University](https://cvlab.yonsei.ac.kr).<br>
+My research is conducted at KIST. I am applying to Ph.D. programs for Fall 2027.
 
-<h2>Research Interests</h2>
-
-<div style="margin:1rem 0 1.25rem; padding:1rem 1.25rem; border-left:3px solid var(--global-theme-color); background:var(--global-card-bg-color); border-radius:0 6px 6px 0;">
-  <div style="font-family:'JetBrains Mono',ui-monospace,monospace; font-size:0.7rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--global-theme-color); margin-bottom:0.5rem;">Multimodal Learning for Predictive Physical Interaction Understanding</div>
-  I develop <strong>multimodal models</strong> that understand how agents interact with objects and reason about the <strong>physical consequences of their actions</strong>. Building on my work in temporal action analysis, vision–language retrieval, and domain generalization, I aim to learn transferable representations of motion, object states, and interaction context from multimodal observations — with the ultimate goal of <strong>anticipating future interactions</strong> and action outcomes to support reliable decision-making in dynamic, real-world environments.
-</div>
-
-<div class="ed-keywords">
-  <div class="ed-keywords-label">Research keywords</div>
-  <div class="ed-keywords-chips">
-    <span>Multimodal Learning</span>
-    <span>Vision-Language Models</span>
-    <span>Temporal Action Understanding</span>
-    <span>Person Re-Identification</span>
-    <span>Domain Generalization</span>
-  </div>
-</div>
-
-<h2>What I've Worked On</h2>
-
-- **Multimodal Human Proficiency Estimation (SkillLens)** — Action-guided Prototype Dynamics Margin (PDM) and CORAL-based ordinal calibration for proficiency estimation; **54.2%** accuracy on Ego-Exo4D (+4.1pp over the strongest evaluated baseline). *CVPR 2026 Workshop on MOMA (Oral).* [[project page](https://skill-lens.net/)]
-- **Robust Text-to-Image Person Re-Identification** *(ongoing, KIST)* — Text-based person retrieval for missing-person and suspect searches where only natural-language descriptions are available.
-- **Federated Domain Generalization for Person Re-Identification** *(KIST)* — Identity-ranking diagnostics and leave-one-client-out analysis for a deployed CCTV missing-person search system scaling across heterogeneous municipal environments.
-- **Pose-Robust Representation Learning for Person Re-Identification (SwapMixer)** *(KIST)* — Generation-free feature-level augmentation combining identity representations with pose embeddings from different identities.
-- **Knowledge Distillation for Open-Vocabulary Object Detection** *(Yonsei B.S. capstone)* — Similarity-preserving distillation aligning teacher–student relational representations; improved novel-class box AP50 on COCO by **+1.2** points (23.1 → 24.3).
-
-See the [publications]({{ '/publications/' | relative_url }}) and [projects]({{ '/projects/' | relative_url }}) pages for the full list.
+At KIST, I have worked on federated domain generalization and text-to-image retrieval for person re-identification, and on [SkillLens](https://skill-lens.net/), a multimodal proficiency-estimation framework accepted as an oral at the [CVPR 2026 Workshop on MOMA](https://sites.google.com/view/moma-cvpr-2026/). I hold a B.S. in Electrical and Electronic Engineering from Yonsei University, where my capstone research on open-vocabulary object detection with Junghyun Park received the Most Popular Award (3rd place) at the 2024 EE-Festival.

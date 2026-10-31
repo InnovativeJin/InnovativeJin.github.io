@@ -1,84 +1,106 @@
 /*******************************************************************************
- * Themes — Harbor
- * Cool blue-gray + teal palette (354649 / 6C7A89 / A3C6C4 / E0E7E9).
- * Newsreader serif body + JetBrains Mono for labels/meta.
- * Local override of al_folio_core/_sass/_themes.scss
+ * Themes — Gallery
+ *
+ * Apple-inspired web language from the "Gallery" design system: one Action
+ * Blue, canvas / parchment / near-black tiles, SF Pro through the system font
+ * stack (Inter as the fallback), 17px body copy, a single product shadow.
+ *
+ * `--g-*` custom properties mirror the design system's tokens one-to-one.
+ * al-folio's `--global-*` variables are mapped onto them below, so the theme's
+ * own partials (navbar, publications, cv, …) pick the palette up unchanged.
+ * Local override of al_folio_core/_sass/_themes.scss.
  ******************************************************************************/
 @use "variables" as v;
-@use "sass:color";
 
-/* Harbor palette tokens — keep here so light/dark blocks can both reference them. */
-$ed-bg: #eef2f3;
-$ed-bg2: #e0e7e9;
-$ed-fg: #2e3d41;
-$ed-fg-soft: #45565b;
-$ed-fg-muted: #6c7a89;
-$ed-border: #cbd7d8;
-$ed-rule: #a9c5c3;
-$ed-accent: #3f827e;
-$ed-accent-hi: #336b68;
-
-$ed-dk-bg: #1b2528;
-$ed-dk-bg2: #243034;
-$ed-dk-fg: #e0e7e9;
-$ed-dk-fg-soft: #c2cfd2;
-$ed-dk-fg-muted: #9aaab1;
-$ed-dk-border: #36454a;
-$ed-dk-rule: #46585e;
-$ed-dk-accent: #a3c6c4;
-$ed-dk-accent-hi: #bbd6d4;
-
+/* ---------------------------------------------------------------------------
+ * Tokens — Light (first theme) + al-folio mapping
+ * ------------------------------------------------------------------------- */
 :root {
   color-scheme: light;
 
-  /* Editorial design tokens — also used by local extensions. */
-  --ed-bg: #{$ed-bg};
-  --ed-bg2: #{$ed-bg2};
-  --ed-fg: #{$ed-fg};
-  --ed-fg-soft: #{$ed-fg-soft};
-  --ed-fg-muted: #{$ed-fg-muted};
-  --ed-border: #{$ed-border};
-  --ed-rule: #{$ed-rule};
-  --ed-accent: #{$ed-accent};
-  --ed-accent-hi: #{$ed-accent-hi};
+  /* color */
+  --g-primary: #0066cc;
+  --g-primary-focus: #0071e3;
+  --g-primary-on-dark: #2997ff;
+  --g-link: var(--g-primary);
+  --g-ink: #1d1d1f;
+  --g-body-on-dark: #ffffff;
+  --g-body-muted: #cccccc;
+  --g-ink-muted-80: #333333;
+  --g-ink-muted-48: #7a7a7a;
+  --g-divider-soft: #f0f0f0;
+  --g-hairline: #e0e0e0;
+  --g-canvas: #ffffff;
+  --g-canvas-parchment: #f5f5f7;
+  --g-surface-pearl: #fafafc;
+  --g-surface-tile-1: #272729;
+  --g-surface-tile-2: #2a2a2c;
+  --g-surface-tile-3: #252527;
+  --g-surface-black: #000000;
+  --g-surface-chip: #d2d2d7;
+  --g-on-primary: #ffffff;
+  --g-on-dark: #ffffff;
 
-  /* al-folio core CSS variables — mapped to the editorial palette. */
-  --global-bg-color: #{$ed-bg};
-  --global-code-bg-color: #{$ed-bg2};
-  --global-text-color: #{$ed-fg};
-  --global-text-color-light: #{$ed-fg-muted};
-  --global-theme-color: #{$ed-accent};
-  --global-hover-color: #{$ed-accent-hi};
-  --global-hover-text-color: #{$ed-bg};
-  --global-footer-bg-color: #{$ed-bg2};
-  --global-footer-text-color: #{$ed-fg-muted};
-  --global-footer-link-color: #{$ed-fg};
-  --global-distill-app-color: #{$ed-fg-muted};
-  --global-divider-color: #{$ed-border};
-  --global-card-bg-color: #{$ed-bg2};
-  --global-highlight-color: #{$ed-accent};
-  --global-back-to-top-bg-color: rgba(
-    #{color.channel($ed-fg, "red", v.$space: rgb)},
-    #{color.channel($ed-fg, "green", v.$space: rgb)},
-    #{color.channel($ed-fg, "blue", v.$space: rgb)},
-    0.4
-  );
-  --global-back-to-top-text-color: #{$ed-bg};
-  --global-newsletter-bg-color: #{$ed-bg2};
-  --global-newsletter-text-color: #{$ed-fg};
+  /* type */
+  --g-font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --g-font-text: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
 
-  --global-tip-block: #5b8a6b;
-  --global-tip-block-bg: #e4ecd9;
-  --global-tip-block-text: #2c4a35;
-  --global-tip-block-title: #3d6a4a;
-  --global-warning-block: #b08a3e;
-  --global-warning-block-bg: #f3e9cf;
-  --global-warning-block-text: #5b4717;
-  --global-warning-block-title: #87691f;
-  --global-danger-block: #9a4f2e;
-  --global-danger-block-bg: #f1d9cc;
-  --global-danger-block-text: #4d2614;
-  --global-danger-block-title: #9a4f2e;
+  /* spacing */
+  --g-space-xxs: 4px;
+  --g-space-xs: 8px;
+  --g-space-sm: 12px;
+  --g-space-md: 17px;
+  --g-space-lg: 24px;
+  --g-space-xl: 32px;
+  --g-space-xxl: 48px;
+  --g-space-section: 80px;
+
+  /* radius */
+  --g-radius-xs: 5px;
+  --g-radius-sm: 8px;
+  --g-radius-md: 11px;
+  --g-radius-lg: 18px;
+  --g-radius-pill: 9999px;
+
+  /* shadow + effects + layout */
+  --g-shadow-product: 3px 5px 30px 0 rgba(0, 0, 0, 0.22);
+  --g-shadow-hairline-ring: 0 0 0 1px rgba(0, 0, 0, 0.08);
+  --g-press-scale: 0.95;
+  --g-content-max: 980px;
+  --g-nav-height: 44px;
+
+  /* al-folio core variables → Gallery tokens */
+  --global-bg-color: var(--g-canvas);
+  --global-code-bg-color: var(--g-canvas-parchment);
+  --global-text-color: var(--g-ink);
+  --global-text-color-light: var(--g-ink-muted-80);
+  --global-theme-color: var(--g-primary);
+  --global-hover-color: var(--g-primary-focus);
+  --global-hover-text-color: var(--g-on-primary);
+  --global-footer-bg-color: var(--g-canvas-parchment);
+  --global-footer-text-color: var(--g-ink-muted-80);
+  --global-footer-link-color: var(--g-ink);
+  --global-distill-app-color: var(--g-ink-muted-80);
+  --global-divider-color: var(--g-hairline);
+  --global-card-bg-color: var(--g-canvas-parchment);
+  --global-highlight-color: var(--g-primary);
+  --global-back-to-top-bg-color: rgba(29, 29, 31, 0.4);
+  --global-back-to-top-text-color: var(--g-canvas);
+  --global-newsletter-bg-color: var(--g-canvas-parchment);
+  --global-newsletter-text-color: var(--g-ink);
+
+  --global-tip-block: #42b983;
+  --global-tip-block-bg: #e2f5ec;
+  --global-tip-block-text: #215d42;
+  --global-tip-block-title: #359469;
+  --global-warning-block: #e7c000;
+  --global-warning-block-bg: #fff8d8;
+  --global-warning-block-text: #6b5900;
+  --global-warning-block-title: #b29400;
+  --global-danger-block: #c00;
+  --global-danger-block-bg: #ffe0e0;
+  --global-danger-block-text: #600;
+  --global-danger-block-title: #c00;
 
   #light-toggle-system {
     display: inline-block;
@@ -107,55 +129,57 @@ $ed-dk-accent-hi: #bbd6d4;
   }
 }
 
+/* ---------------------------------------------------------------------------
+ * Tokens — Dark
+ * Dark tiles keep their values; the page canvas turns true black. Values the
+ * source did not define (hairline, muted-48, pearl, divider) are the site's.
+ * ------------------------------------------------------------------------- */
 html[data-theme="dark"] {
   color-scheme: dark;
 
-  --ed-bg: #{$ed-dk-bg};
-  --ed-bg2: #{$ed-dk-bg2};
-  --ed-fg: #{$ed-dk-fg};
-  --ed-fg-soft: #{$ed-dk-fg-soft};
-  --ed-fg-muted: #{$ed-dk-fg-muted};
-  --ed-border: #{$ed-dk-border};
-  --ed-rule: #{$ed-dk-rule};
-  --ed-accent: #{$ed-dk-accent};
-  --ed-accent-hi: #{$ed-dk-accent-hi};
+  --g-primary: #0071e3;
+  --g-link: var(--g-primary-on-dark);
+  --g-ink: #f5f5f7;
+  --g-ink-muted-80: #d2d2d7;
+  --g-ink-muted-48: #a1a1a6;
+  --g-divider-soft: #2d2d30;
+  --g-hairline: #424245;
+  --g-canvas: #000000;
+  --g-canvas-parchment: #1d1d1f;
+  --g-surface-pearl: #333336;
+  --g-shadow-hairline-ring: 0 0 0 1px rgba(255, 255, 255, 0.12);
 
-  --global-bg-color: #{$ed-dk-bg};
-  --global-code-bg-color: #{$ed-dk-bg2};
-  --global-text-color: #{$ed-dk-fg};
-  --global-text-color-light: #{$ed-dk-fg-muted};
-  --global-theme-color: #{$ed-dk-accent};
-  --global-hover-color: #{$ed-dk-accent-hi};
-  --global-hover-text-color: #{$ed-dk-bg};
-  --global-footer-bg-color: #{$ed-dk-bg2};
-  --global-footer-text-color: #{$ed-dk-fg-muted};
-  --global-footer-link-color: #{$ed-dk-fg};
-  --global-distill-app-color: #{$ed-dk-fg-muted};
-  --global-divider-color: #{$ed-dk-border};
-  --global-card-bg-color: #{$ed-dk-bg2};
-  --global-highlight-color: #{$ed-dk-accent};
-  --global-back-to-top-bg-color: rgba(
-    #{color.channel($ed-dk-fg, "red", v.$space: rgb)},
-    #{color.channel($ed-dk-fg, "green", v.$space: rgb)},
-    #{color.channel($ed-dk-fg, "blue", v.$space: rgb)},
-    0.5
-  );
-  --global-back-to-top-text-color: #{$ed-dk-bg};
-  --global-newsletter-bg-color: #{$ed-dk-bg2};
-  --global-newsletter-text-color: #{$ed-dk-fg};
+  --global-bg-color: var(--g-canvas);
+  --global-code-bg-color: var(--g-surface-tile-2);
+  --global-text-color: var(--g-ink);
+  --global-text-color-light: var(--g-ink-muted-80);
+  --global-theme-color: var(--g-primary-on-dark);
+  --global-hover-color: var(--g-primary-on-dark);
+  --global-hover-text-color: var(--g-on-primary);
+  --global-footer-bg-color: var(--g-canvas-parchment);
+  --global-footer-text-color: var(--g-ink-muted-80);
+  --global-footer-link-color: var(--g-ink);
+  --global-distill-app-color: var(--g-ink-muted-80);
+  --global-divider-color: var(--g-hairline);
+  --global-card-bg-color: var(--g-canvas-parchment);
+  --global-highlight-color: var(--g-primary-on-dark);
+  --global-back-to-top-bg-color: rgba(245, 245, 247, 0.5);
+  --global-back-to-top-text-color: var(--g-canvas);
+  --global-newsletter-bg-color: var(--g-canvas-parchment);
+  --global-newsletter-text-color: var(--g-ink);
 
-  --global-tip-block: #87a890;
-  --global-tip-block-bg: #2c4a35;
-  --global-tip-block-text: #e4ecd9;
-  --global-tip-block-title: #c8d8b9;
-  --global-warning-block: #d6b56b;
-  --global-warning-block-bg: #5b4717;
-  --global-warning-block-text: #f3e9cf;
-  --global-warning-block-title: #fff2cf;
-  --global-danger-block: #e07a4a;
-  --global-danger-block-bg: #4d2614;
-  --global-danger-block-text: #f1d9cc;
-  --global-danger-block-title: #f5b894;
+  --global-tip-block: #42b983;
+  --global-tip-block-bg: #215d42;
+  --global-tip-block-text: #beffe2;
+  --global-tip-block-title: #e2f5ec;
+  --global-warning-block: #e7c000;
+  --global-warning-block-bg: #6b5900;
+  --global-warning-block-text: #fff2af;
+  --global-warning-block-title: #fff8d8;
+  --global-danger-block: #c00;
+  --global-danger-block-bg: #600;
+  --global-danger-block-text: #ffb9b9;
+  --global-danger-block-title: #ffe0e0;
 
   .only-light {
     display: none;
@@ -194,61 +218,7 @@ html[data-theme-setting="light"] {
   }
 }
 
-/* Editorial typography — warm serif body, mono for meta/labels. */
-html {
-  font-family: "Newsreader", "Source Serif Pro", Georgia, "Times New Roman", serif;
-}
-
-body {
-  font-family: "Newsreader", "Source Serif Pro", Georgia, "Times New Roman", serif;
-  font-feature-settings: "liga", "kern", "onum";
-  font-weight: 400;
-  letter-spacing: -0.005em;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: "Newsreader", "Source Serif Pro", Georgia, serif;
-  font-weight: 500;
-  letter-spacing: -0.015em;
-}
-
-h1 {
-  letter-spacing: -0.025em;
-}
-
-code,
-pre,
-kbd,
-samp,
-tt,
-.font-mono,
-.post-meta,
-.post-tags,
-.publications .periodical,
-.publications .author,
-.bibliography .periodical,
-.bibliography .author,
-.profile .more-info,
-.news .date {
-  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-}
-
-/* Subtle rust underline on body links (skip nav/buttons/icons). */
-.post-content a:not(.btn):not(.no-underline),
-.profile + .clearfix a,
-#about a:not(.btn) {
-  text-decoration: underline;
-  text-decoration-color: var(--ed-accent);
-  text-underline-offset: 3px;
-  text-decoration-thickness: 1px;
-}
-
-/* Half sun/moon glyph used by light-toggle (kept from upstream). */
+/* Half sun/moon glyph used by the light toggle (kept from upstream). */
 .fa-half-sun-moon {
   position: relative;
   display: inline-block;
@@ -278,1011 +248,1091 @@ tt,
 
 .fa-half-sun-moon::before {
   content: "\f111";
-  color: var(--global-text-color);
+  color: currentColor;
   clip-path: polygon(0 0, calc(50% - 0.5px) 0, calc(50% - 0.5px) 100%, 0 100%);
 }
 
 .fa-half-sun-moon::after {
   content: "\f185";
-  color: var(--global-text-color);
+  color: currentColor;
   clip-path: polygon(calc(50% + 0.5px) 0, 100% 0, 100% 100%, calc(50% + 0.5px) 100%);
   right: -1.5px;
   transform: translateX(-1px);
 }
 
-#light-toggle:hover .fa-half-sun-moon::before,
-#light-toggle:hover .fa-half-sun-moon::after {
-  color: var(--global-theme-color);
+/* ---------------------------------------------------------------------------
+ * Base typography — 17px body, 600 headlines, tight display tracking
+ * ------------------------------------------------------------------------- */
+html {
+  font-family: var(--g-font-text);
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--g-nav-height) + var(--g-space-xs));
 }
 
-/* ============================================================================
- * Editorial about-page layout — recreates the design PDF spec.
- * Used by _layouts/about.liquid (.editorial-about root).
- * ========================================================================= */
-
-.editorial-about {
-  color: var(--global-text-color);
-  font-family: "Newsreader", Georgia, serif;
-  letter-spacing: -0.005em;
-
-  /* small mono uppercase eyebrow used across sections */
-  .ed-eyebrow {
-    font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--global-text-color-light);
-  }
-
-  /* ---- hero ---- */
-  .ed-hero {
-    padding-top: 4.4rem;
-    padding-bottom: 1.8rem;
-
-    .ed-eyebrow {
-      margin-bottom: 1.6rem;
-    }
-  }
-
-  .ed-hero-title {
-    margin: 0 0 1rem;
-    font-family: "Newsreader", Georgia, serif;
-    font-size: clamp(2.6rem, 6vw, 4rem);
-    line-height: 1.05;
-    letter-spacing: -0.03em;
-    font-weight: 500;
-    color: var(--global-text-color);
-
-    em {
-      font-style: italic;
-      font-weight: 500;
-    }
-  }
-
-  .ed-name-ko {
-    display: inline-block;
-    margin-left: 0.4rem;
-    font-size: 0.34em;
-    vertical-align: 0.7em;
-    font-style: italic;
-    font-weight: 400;
-    color: var(--global-text-color-light);
-    letter-spacing: -0.005em;
-  }
-
-  .ed-subtitle {
-    margin: 0;
-    max-width: none;
-    font-size: 1.05rem;
-    line-height: 1.55;
-    color: var(--global-text-color-light);
-
-    a {
-      color: var(--global-text-color);
-      text-decoration: underline;
-      text-decoration-color: var(--global-theme-color);
-      text-decoration-thickness: 1px;
-      text-underline-offset: 3px;
-    }
-  }
-
-  /* ---- bio + photo ---- */
-  .ed-bio {
-    display: grid;
-    grid-template-columns: 180px 1fr;
-    gap: 3rem;
-    align-items: start;
-    padding-top: 1.4rem;
-    padding-bottom: 3.2rem;
-  }
-
-  @media (max-width: 720px) {
-    .ed-bio {
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-    }
-  }
-
-  .ed-bio-left {
-    .ed-profile-img,
-    img {
-      width: 100%;
-      max-width: 180px;
-      height: auto;
-      aspect-ratio: auto;
-      border-radius: 4px;
-      border: 1px solid var(--global-divider-color);
-      background: var(--global-card-bg-color);
-      display: block;
-    }
-  }
-
-  .ed-affiliation {
-    margin-top: 0.9rem;
-    font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 0.7rem;
-    line-height: 1.55;
-    color: var(--global-text-color-light);
-
-    p {
-      margin: 0;
-    }
-  }
-
-  .ed-bio-right {
-    .ed-bio-body {
-      font-size: 1.06rem;
-      line-height: 1.7;
-      color: var(--global-text-color);
-    }
-
-    p {
-      margin: 0 0 1.2rem;
-      color: var(--global-text-color);
-    }
-
-    p:last-of-type {
-      margin-bottom: 1.6rem;
-    }
-
-    strong {
-      color: var(--global-text-color);
-      font-weight: 600;
-    }
-
-    em {
-      font-style: italic;
-      color: var(--global-text-color);
-    }
-
-    a {
-      color: var(--global-text-color);
-      text-decoration: underline;
-      text-decoration-color: var(--global-theme-color);
-      text-decoration-thickness: 1px;
-      text-underline-offset: 3px;
-    }
-  }
-
-  /* ---- research keywords chips ---- */
-  .ed-keywords {
-    margin-top: 0.4rem;
-    margin-bottom: 0.4rem;
-  }
-
-  .ed-keywords-label {
-    font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--global-text-color-light);
-    margin-bottom: 0.6rem;
-  }
-
-  .ed-keywords-chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.45rem;
-
-    span {
-      display: inline-block;
-      padding: 0.15rem 0.6rem;
-      font-family: "JetBrains Mono", ui-monospace, monospace;
-      font-size: 0.72rem;
-      letter-spacing: 0.02em;
-      color: var(--global-text-color-light);
-      background: var(--global-card-bg-color);
-      border: 1px solid var(--global-divider-color);
-      border-radius: 999px;
-    }
-  }
-
-  /* ---- section header (eyebrow number + serif title + arrow) ---- */
-  .ed-section {
-    padding-top: 1rem;
-    padding-bottom: 3.4rem;
-  }
-
-  .ed-section-head {
-    display: flex;
-    align-items: baseline;
-    gap: 0.7rem;
-    margin-bottom: 1.4rem;
-  }
-
-  .ed-num {
-    font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 0.78rem;
-    letter-spacing: 0.18em;
-    color: var(--global-theme-color);
-    text-transform: uppercase;
-  }
-
-  .ed-section-title {
-    font-family: "Newsreader", Georgia, serif;
-    font-size: 1.65rem;
-    font-weight: 500;
-    letter-spacing: -0.02em;
-    color: var(--global-text-color);
-    text-decoration: none;
-
-    &:hover {
-      color: var(--global-text-color);
-      text-decoration: none;
-    }
-
-    .ed-arrow {
-      opacity: 0.45;
-      font-size: 1.15rem;
-      margin-left: 0.2rem;
-    }
-  }
-
-  /* ---- news ---- */
-  .ed-news-list {
-    border-top: 1px solid var(--global-divider-color);
-  }
-
-  .ed-news-row {
-    display: grid;
-    grid-template-columns: 130px 1fr 80px;
-    gap: 1.6rem;
-    padding: 1.2rem 0;
-    border-bottom: 1px solid var(--global-divider-color);
-    align-items: baseline;
-  }
-
-  @media (max-width: 720px) {
-    .ed-news-row {
-      grid-template-columns: 110px 1fr;
-      gap: 1rem;
-
-      .ed-news-tag {
-        grid-column: 2;
-        justify-self: start;
-        margin-top: 0.2rem;
-      }
-    }
-  }
-
-  .ed-news-date {
-    font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 0.72rem;
-    color: var(--global-text-color-light);
-    letter-spacing: 0.02em;
-  }
-
-  .ed-news-body {
-    font-size: 1rem;
-    line-height: 1.55;
-    color: var(--global-text-color);
-
-    p {
-      margin: 0;
-    }
-
-    strong {
-      font-weight: 600;
-      color: var(--global-text-color);
-    }
-
-    em {
-      font-style: italic;
-    }
-  }
-
-  .ed-news-tag {
-    text-align: right;
-    font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 0.66rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--global-theme-color);
-  }
-
-  /* ---- publications (wrap al-folio's bibliography output) ---- */
-  .ed-pubs-wrap {
-    .publications {
-      margin-top: 0;
-    }
-
-    .publications h1,
-    .publications h2 {
-      display: none; /* hide al-folio's default headings, we have our own */
-    }
-
-    ol.bibliography {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    ol.bibliography > li {
-      padding: 1.4rem 0;
-      border-top: 1px solid var(--global-divider-color);
-      margin-bottom: 0;
-    }
-
-    ol.bibliography > li:last-child {
-      border-bottom: 1px solid var(--global-divider-color);
-    }
-
-    /* Restructure jekyll-scholar's Bootstrap .row/.col output into our 2-col grid. */
-    ol.bibliography > li > .row {
-      display: grid;
-      grid-template-columns: 90px 1fr;
-      gap: 1.8rem;
-      margin: 0;
-      align-items: start;
-    }
-
-    @media (max-width: 720px) {
-      ol.bibliography > li > .row {
-        grid-template-columns: 1fr;
-        gap: 0.6rem;
-      }
-    }
-
-    /* Reset Bootstrap col widths/padding inside the bibliography grid. */
-    ol.bibliography > li > .row > [class*="col"] {
-      width: auto;
-      max-width: none;
-      flex: initial;
-      padding: 0;
-      min-height: 0;
-    }
-
-    /* Left column: venue abbr ("BMVC", "TIP", ...) */
-    ol.bibliography > li .abbr {
-      margin-bottom: 0;
-    }
-
-    ol.bibliography > li .abbr abbr,
-    ol.bibliography > li .abbr abbr.badge {
-      display: inline-block;
-      margin: 0;
-      padding: 0;
-      width: auto !important;
-      background: transparent !important;
-      color: var(--global-theme-color) !important;
-      font-family: "JetBrains Mono", ui-monospace, monospace !important;
-      font-size: 0.72rem !important;
-      letter-spacing: 0.18em !important;
-      font-weight: 600 !important;
-      text-transform: uppercase;
-      text-decoration: none;
-      border: none;
-      box-shadow: none;
-    }
-
-    ol.bibliography > li .abbr abbr a {
-      color: var(--global-theme-color) !important;
-      text-decoration: none;
-
-      &:hover {
-        color: var(--global-hover-color) !important;
-      }
-    }
-
-    /* Right column: title, authors, journal */
-    ol.bibliography > li .title {
-      font-family: "Newsreader", Georgia, serif;
-      font-size: 1.1rem;
-      line-height: 1.35;
-      letter-spacing: -0.015em;
-      font-weight: 500;
-      color: var(--global-text-color);
-      margin-bottom: 0.4rem;
-    }
-
-    ol.bibliography > li .author {
-      font-size: 0.92rem;
-      color: var(--global-text-color);
-      margin-bottom: 0.3rem;
-      font-style: italic;
-
-      em {
-        border-bottom: none;
-        font-style: normal;
-        font-weight: 600;
-        color: var(--global-text-color);
-      }
-
-      a {
-        color: var(--global-text-color);
-        border-bottom: none;
-
-        &:hover {
-          color: var(--global-theme-color);
-        }
-      }
-    }
-
-    ol.bibliography > li .periodical {
-      font-family: "Newsreader", Georgia, serif;
-      font-size: 0.88rem;
-      font-style: italic;
-      color: var(--global-text-color-light);
-      margin: 0.15rem 0;
-
-      em {
-        font-style: italic;
-      }
-    }
-
-    /* second .periodical block is jekyll-scholar's note line (e.g. "Under Review"). */
-    ol.bibliography > li .periodical + .periodical {
-      font-family: "JetBrains Mono", ui-monospace, monospace !important;
-      font-style: normal;
-      font-size: 0.68rem;
-      letter-spacing: 0.02em;
-      color: var(--global-text-color-light);
-      margin-top: 0.35rem;
-    }
-
-    /* hide buttons like bib/abs by default to keep the layout clean */
-    ol.bibliography > li .links {
-      margin-top: 0.5rem;
-    }
-
-    ol.bibliography > li .links a.btn {
-      font-size: 0.7rem;
-      padding: 0.15rem 0.55rem;
-      border-radius: 4px;
-      font-family: "JetBrains Mono", ui-monospace, monospace;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-left: 0;
-      margin-right: 0.4rem;
-    }
-  }
-
-  /* ---- editorial footer ---- */
-  .ed-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.6rem 0 3rem;
-    border-top: 1px solid var(--global-divider-color);
-    margin-top: 1.4rem;
-  }
-
-  .ed-copyright {
-    font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 0.7rem;
-    color: var(--global-text-color-light);
-    letter-spacing: 0.02em;
-  }
-
-  .ed-social {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-
-    a {
-      color: var(--global-text-color-light);
-      font-size: 0.95rem;
-      line-height: 0;
-      opacity: 0.85;
-      transition:
-        opacity 0.15s ease,
-        color 0.15s ease;
-
-      &:hover {
-        color: var(--global-text-color);
-        opacity: 1;
-      }
-
-      i {
-        font-size: 0.95rem;
-      }
-
-      img,
-      svg {
-        width: 1rem;
-        height: 1rem;
-      }
-    }
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }
 
-/* Slim fall-through footer used on non-about pages. */
-.ed-page-footer {
-  padding: 2rem 0 1.6rem;
-  border-top: 1px solid var(--global-divider-color);
-  background: transparent;
-
-  .ed-page-footer-text {
-    font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 0.7rem;
-    color: var(--global-text-color-light);
-    letter-spacing: 0.02em;
-  }
-}
-
-/* About page no longer needs the global fixed-bottom padding hack
-   since we override the include to render nothing for layout: about. */
 body {
-  padding-bottom: 0;
+  font-family: var(--g-font-text);
+  font-size: 17px;
+  line-height: 1.47;
+  font-weight: 400;
+  letter-spacing: -0.374px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* ============================================================================
- * Editorial styling for OTHER pages (publications, projects, repositories, cv)
- * which use al-folio's page.liquid layout: <div class="post">.post-header h1.
- * Mirrors the .editorial-about treatment so the whole site reads consistently.
- * ========================================================================= */
+body.fixed-top-nav {
+  padding-top: var(--g-nav-height);
+}
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--g-font-display);
+  font-weight: 600;
+  letter-spacing: -0.374px;
+  margin-top: 0;
+}
+
+h1 {
+  font-size: 40px;
+  line-height: 1.1;
+  letter-spacing: 0;
+}
+
+h2 {
+  font-size: 34px;
+  line-height: 1.2;
+}
+
+h3 {
+  font-size: 21px;
+  line-height: 1.19;
+  letter-spacing: 0.231px;
+}
+
+h4,
+h5,
+h6 {
+  font-size: 17px;
+  line-height: 1.24;
+}
+
+strong,
+b {
+  font-weight: 600;
+}
+
+a,
+table.table a {
+  color: var(--g-link);
+  text-decoration: none;
+
+  &:hover {
+    color: var(--g-link);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--g-primary-focus);
+  outline-offset: 2px;
+}
+
+small,
+.small {
+  font-size: 14px;
+  line-height: 1.43;
+  letter-spacing: -0.224px;
+}
+
+code,
+pre,
+kbd,
+samp {
+  font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.88em;
+}
+
+code {
+  background: var(--g-canvas-parchment);
+  border-radius: var(--g-radius-xs);
+  padding: 0.1em 0.35em;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--g-hairline);
+}
+
+blockquote {
+  border-left: 0;
+  background: var(--g-canvas-parchment);
+  border-radius: var(--g-radius-lg);
+  padding: var(--g-space-lg);
+  font-size: 21px;
+  line-height: 1.33;
+  letter-spacing: 0.231px;
+  color: var(--g-ink);
+}
+
+/* Generic page layout (publications, projects, news, cv) */
 .post {
-  color: var(--global-text-color);
-  font-family: "Newsreader", Georgia, serif;
-  letter-spacing: -0.005em;
-  padding-top: 2.4rem;
-
-  /* page header (acts like the section heads on the about page) */
   .post-header {
-    padding-top: 1.2rem;
-    padding-bottom: 1.4rem;
-    margin-bottom: 2.2rem;
-    border-bottom: 1px solid var(--global-divider-color);
-    text-align: left;
+    padding-top: var(--g-space-xxl);
+    margin-bottom: var(--g-space-xl);
   }
 
   .post-title {
-    font-family: "Newsreader", Georgia, serif;
-    font-size: clamp(2.2rem, 4vw, 3rem);
-    font-weight: 500;
-    letter-spacing: -0.025em;
-    line-height: 1.05;
-    color: var(--global-text-color);
-    text-transform: lowercase;
-    margin: 0 0 0.6rem 0;
+    font-size: 40px;
+    line-height: 1.1;
+    letter-spacing: 0;
+    margin: 0 0 var(--g-space-md);
+    text-transform: capitalize;
   }
 
   .post-description {
-    font-family: "Newsreader", Georgia, serif;
-    font-size: 1rem;
-    line-height: 1.55;
-    color: var(--global-text-color-light);
     margin: 0;
-    max-width: 760px;
+    font-size: 21px;
+    line-height: 1.33;
+    letter-spacing: 0.231px;
+    font-weight: 400;
+    color: var(--g-ink-muted-80);
+    max-width: 640px;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * Buttons — pill primary / ghost / utility (Gallery `Button`)
+ * ------------------------------------------------------------------------- */
+.g-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--g-space-xs);
+  min-height: 44px;
+  padding: 11px 22px;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  border-radius: var(--g-radius-pill);
+  font-family: var(--g-font-text);
+  font-size: 17px;
+  line-height: 1.47;
+  font-weight: 400;
+  letter-spacing: -0.374px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 120ms ease-out;
+
+  &:hover {
+    text-decoration: none;
   }
 
-  /* generic body type inside articles */
-  article {
-    font-size: 1rem;
-    line-height: 1.7;
-    color: var(--global-text-color);
+  &:active {
+    transform: scale(var(--g-press-scale));
+  }
 
-    a {
-      color: var(--global-text-color);
-      text-decoration: underline;
-      text-decoration-color: var(--global-theme-color);
-      text-decoration-thickness: 1px;
-      text-underline-offset: 3px;
+  &:focus-visible {
+    outline: 2px solid var(--g-primary-focus);
+    outline-offset: 2px;
+  }
+}
+
+.g-btn--primary {
+  background: var(--g-primary);
+  color: var(--g-on-primary) !important;
+}
+
+.g-btn--ghost {
+  background: transparent;
+  color: var(--g-link) !important;
+  border-color: var(--g-link);
+  transition:
+    transform 120ms ease-out,
+    background-color 120ms ease-out,
+    color 120ms ease-out;
+
+  &:hover,
+  &:focus-visible {
+    background: var(--g-link);
+    color: var(--g-on-primary) !important;
+  }
+}
+
+.g-btn--utility {
+  background: var(--g-ink);
+  color: var(--g-canvas) !important;
+  border-radius: var(--g-radius-sm);
+  padding: 8px 15px;
+  min-height: 32px;
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: -0.224px;
+}
+
+/* ---------------------------------------------------------------------------
+ * Tiles — full-bleed section bands (Gallery `Tile`)
+ * The default layout wraps content in `.container`; a tile breaks out of it
+ * with viewport-width negative margins and re-centers its own inner column.
+ * ------------------------------------------------------------------------- */
+.g-home {
+  /* cancel the `.container.mt-5` top margin so the hero meets the nav */
+  margin-top: -3rem;
+}
+
+.g-tile {
+  position: relative;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding: var(--g-space-section) var(--g-space-lg);
+  background: var(--g-canvas);
+  color: var(--g-ink);
+  text-align: center;
+}
+
+.g-tile__inner {
+  max-width: var(--g-content-max);
+  margin: 0 auto;
+}
+
+.g-tile--parchment {
+  background: var(--g-canvas-parchment);
+}
+
+.g-tile--dark {
+  background: var(--g-surface-tile-1);
+  color: var(--g-body-on-dark);
+
+  /* al_folio_core colors every p/div/span/li with --global-text-color;
+     inside a dark tile they must read white. */
+  h2,
+  h3,
+  p,
+  div,
+  span,
+  li,
+  strong,
+  em {
+    color: var(--g-body-on-dark);
+  }
+
+  a:not(.g-btn) {
+    color: var(--g-primary-on-dark);
+  }
+
+  .g-btn--ghost {
+    color: var(--g-primary-on-dark) !important;
+    border-color: var(--g-primary-on-dark);
+
+    &:hover,
+    &:focus-visible {
+      background: var(--g-primary-on-dark);
+      color: var(--g-surface-black) !important;
     }
+  }
 
-    h2 {
-      font-family: "Newsreader", Georgia, serif;
-      font-size: 1.5rem;
-      font-weight: 500;
-      letter-spacing: -0.015em;
-      color: var(--global-text-color);
-      margin-top: 2.6rem;
-      margin-bottom: 1.1rem;
-      text-transform: lowercase;
-    }
+  .g-tile__lead,
+  .g-muted {
+    color: var(--g-body-muted);
+  }
+}
 
-    h3 {
-      font-family: "Newsreader", Georgia, serif;
-      font-size: 1.2rem;
-      font-weight: 500;
-      letter-spacing: -0.01em;
-      margin-top: 2rem;
-      margin-bottom: 0.8rem;
+.g-tile__headline {
+  font-family: var(--g-font-display);
+  font-size: 40px;
+  line-height: 1.1;
+  letter-spacing: 0;
+  font-weight: 600;
+  margin: 0;
+}
+
+.g-tile__lead {
+  font-family: var(--g-font-display);
+  font-size: 28px;
+  line-height: 1.14;
+  letter-spacing: 0.196px;
+  font-weight: 400;
+  max-width: 640px;
+  margin: var(--g-space-md) auto 0;
+}
+
+.g-tile__ctas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--g-space-xs);
+  margin-top: var(--g-space-xl);
+}
+
+.g-tile__body {
+  max-width: 640px;
+  margin: var(--g-space-xl) auto 0;
+  text-align: left;
+}
+
+/* ---------------------------------------------------------------------------
+ * Hero (About)
+ * ------------------------------------------------------------------------- */
+.g-hero {
+  padding-top: calc(var(--g-space-section) + var(--g-space-md));
+}
+
+.g-hero__name {
+  font-family: var(--g-font-display);
+  font-size: 56px;
+  line-height: 1.07;
+  letter-spacing: -0.28px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.g-hero__sub {
+  margin: var(--g-space-md) 0 0;
+  font-size: 17px;
+  line-height: 1.47;
+  color: var(--g-ink-muted-80);
+
+  a {
+    color: var(--g-ink);
+    &:hover {
+      color: var(--g-link);
     }
   }
 }
 
-/* ---------- publications page (full bibliography) ---------- */
+.g-hero__statement {
+  font-family: var(--g-font-display);
+  font-size: 28px;
+  line-height: 1.14;
+  letter-spacing: 0.196px;
+  font-weight: 400;
+  max-width: 720px;
+  margin: var(--g-space-xl) auto 0;
+}
 
-.post .publications {
+.g-hero__links {
+  list-style: none;
+  padding: 0;
+  margin: var(--g-space-lg) 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--g-space-xs) var(--g-space-lg);
+  font-size: 14px;
+  line-height: 1.43;
+  letter-spacing: -0.224px;
+
+  li {
+    margin: 0;
+  }
+}
+
+.g-hero__ctas {
+  margin-top: var(--g-space-xl);
+}
+
+.g-hero__photo {
+  margin: var(--g-space-xl) auto 0;
+  width: 240px;
+  max-width: 60vw;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--g-radius-sm);
+    box-shadow: var(--g-shadow-product);
+  }
+}
+
+.g-hero__bio {
+  max-width: 640px;
+  margin: var(--g-space-xxl) auto 0;
+  text-align: left;
+
+  p {
+    margin: 0 0 var(--g-space-md);
+    color: var(--g-ink);
+  }
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * Guiding questions (dark Research tile)
+ * ------------------------------------------------------------------------- */
+.g-questions {
+  max-width: 640px;
+  margin: var(--g-space-xl) auto 0;
+  text-align: left;
+}
+
+.g-questions__intro {
+  margin: 0 0 var(--g-space-xs);
+  font-size: 14px;
+  line-height: 1.43;
+  letter-spacing: -0.224px;
+  color: var(--g-body-muted) !important;
+}
+
+.g-questions__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.g-questions__item {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  column-gap: var(--g-space-md);
+  align-items: baseline;
+  padding: var(--g-space-md) 0;
+  margin: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+
+  &:last-child {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  }
+}
+
+.g-questions__num {
+  font-size: 14px;
+  line-height: 1.43;
+  letter-spacing: -0.224px;
+  color: var(--g-body-muted) !important;
+  font-variant-numeric: tabular-nums;
+}
+
+.g-questions__text {
+  margin: 0;
+  font-family: var(--g-font-display);
+  font-size: 21px;
+  line-height: 1.33;
+  letter-spacing: 0.231px;
+  font-weight: 400;
+}
+
+/* ---------------------------------------------------------------------------
+ * Publications — restyle jekyll-scholar output as Gallery cards
+ * (`body` prefix: al_folio_core's _publications.scss loads after this file,
+ * so these rules need one extra point of specificity to win ties.)
+ * ------------------------------------------------------------------------- */
+body .publications {
   margin-top: 0;
 
-  h1,
   h2.bibliography {
-    /* hide jekyll-scholar's default year h2/h1 — we render styled year markers */
-    color: transparent;
-    border: none;
-    margin: 0;
-    height: 0;
-    overflow: hidden;
-  }
-
-  /* re-style the year heading via a separate eyebrow-style block */
-  h2.bibliography {
-    position: relative;
-    height: auto;
-    margin: 2.4rem 0 0.4rem 0;
+    font-family: var(--g-font-text);
+    font-size: 14px;
+    line-height: 1.29;
+    letter-spacing: -0.224px;
+    font-weight: 600;
+    color: var(--g-ink-muted-80);
     text-align: left;
-    color: var(--global-text-color-light) !important;
-
-    &::before {
-      content: attr(id);
-      display: block;
-      font-family: "JetBrains Mono", ui-monospace, monospace;
-      font-size: 0.72rem;
-      letter-spacing: 0.18em;
-      color: var(--global-theme-color);
-      text-transform: uppercase;
-      margin-bottom: 0.3rem;
-    }
+    border-top: 0;
+    padding-top: var(--g-space-xl);
+    margin: 0 0 var(--g-space-sm);
   }
 
   ol.bibliography {
     list-style: none;
     padding: 0;
     margin: 0;
-  }
 
-  ol.bibliography > li {
-    padding: 1.4rem 0;
-    border-top: 1px solid var(--global-divider-color);
-    margin-bottom: 0;
-  }
+    > li {
+      margin: 0 0 var(--g-space-lg);
+      padding: var(--g-space-lg);
+      background: var(--g-canvas);
+      border: 1px solid var(--g-hairline);
+      border-radius: var(--g-radius-lg);
+      text-align: left;
 
-  ol.bibliography > li:last-child {
-    border-bottom: 1px solid var(--global-divider-color);
-  }
+      /* figure column (badge above the teaser) + text column */
+      .row {
+        display: grid;
+        grid-template-columns: 180px minmax(0, 1fr);
+        column-gap: var(--g-space-lg);
+        align-items: stretch; /* the figure column takes the text column's height */
+        margin: 0;
+      }
 
-  /* same 2-col grid as the about page section */
-  ol.bibliography > li > .row {
-    display: grid;
-    grid-template-columns: 100px 1fr;
-    gap: 1.8rem;
-    margin: 0;
-    align-items: start;
-  }
+      .col,
+      [class*="col-"] {
+        flex: none;
+        width: auto;
+        max-width: 100%;
+        padding: 0;
+      }
 
-  ol.bibliography > li > .row > [class*="col"] {
-    width: auto;
-    max-width: none;
-    flex: initial;
-    padding: 0;
-    min-height: 0;
-  }
+      .abbr {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--g-space-sm);
+        margin-bottom: 0;
 
-  ol.bibliography > li .abbr abbr,
-  ol.bibliography > li .abbr abbr.badge {
-    display: inline-block;
-    margin: 0;
-    padding: 0;
-    width: auto !important;
-    background: transparent !important;
-    color: var(--global-theme-color) !important;
-    font-family: "JetBrains Mono", ui-monospace, monospace !important;
-    font-size: 0.72rem !important;
-    letter-spacing: 0.18em !important;
-    font-weight: 600 !important;
-    text-transform: uppercase;
-    text-decoration: none;
-    border: none;
-    box-shadow: none;
-  }
+        abbr.badge {
+          display: inline-block;
+          /* tailwind's layered `.w-100 { width:100% !important }` outranks any
+             unlayered override, so constrain the pill with max-width instead */
+          max-width: max-content;
+          background: var(--g-canvas-parchment);
+          color: var(--g-ink) !important;
+          font-family: var(--g-font-text);
+          font-size: 12px;
+          line-height: 1;
+          letter-spacing: -0.12px;
+          font-weight: 600;
+          padding: 6px 10px;
+          border-radius: var(--g-radius-pill);
+          text-decoration: none;
+          border: 0;
+          margin-bottom: var(--g-space-sm);
 
-  ol.bibliography > li .abbr abbr a {
-    color: var(--global-theme-color) !important;
-    text-decoration: none;
+          a,
+          div {
+            color: var(--g-ink) !important;
+          }
+        }
 
-    &:hover {
-      color: var(--global-hover-color) !important;
-    }
-  }
+        /* the teaser fills whatever height the text column leaves under the badge,
+           never taller than the text: flex-basis 0 keeps it out of the row's height */
+        .preview {
+          display: block;
+          flex: 1 1 0;
+          min-height: 0;
+          width: 100%;
+          max-width: 100%;
+          object-fit: contain;
+          object-position: left top;
+          border: 0;
+          border-radius: 0;
+          box-shadow: none;
+          pointer-events: none;
+        }
+      }
 
-  ol.bibliography > li .title {
-    font-family: "Newsreader", Georgia, serif;
-    font-size: 1.1rem;
-    line-height: 1.35;
-    letter-spacing: -0.015em;
-    font-weight: 500;
-    color: var(--global-text-color);
-    margin-bottom: 0.4rem;
-  }
+      .title {
+        font-size: 17px;
+        line-height: 1.24;
+        letter-spacing: -0.374px;
+        font-weight: 600;
+        color: var(--g-ink);
+        margin-bottom: var(--g-space-xs);
+      }
 
-  ol.bibliography > li .author {
-    font-size: 0.92rem;
-    color: var(--global-text-color);
-    margin-bottom: 0.3rem;
-    font-style: italic;
+      .author,
+      .periodical {
+        font-size: 14px;
+        line-height: 1.43;
+        letter-spacing: -0.224px;
+        color: var(--g-ink-muted-80);
 
-    em {
-      border-bottom: none;
-      font-style: normal;
-      font-weight: 600;
-      color: var(--global-text-color);
-    }
+        a {
+          color: var(--g-ink-muted-80);
+          border-bottom: 0;
+          &:hover {
+            color: var(--g-link);
+            border-bottom: 0;
+          }
+        }
 
-    a {
-      color: var(--global-text-color);
-      border-bottom: none;
+        > em {
+          font-style: normal;
+          font-weight: 600;
+          color: var(--g-ink);
+          border-bottom: 0;
+        }
 
-      &:hover {
-        color: var(--global-theme-color);
+        > span.more-authors {
+          color: var(--g-ink-muted-80);
+          border-bottom: 1px dashed var(--g-ink-muted-48);
+          cursor: pointer;
+        }
+      }
+
+      .periodical:empty {
+        display: none;
+      }
+
+      .links {
+        margin-top: var(--g-space-sm);
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--g-space-xs) var(--g-space-sm);
+
+        a.btn {
+          font-family: var(--g-font-text);
+          font-size: 14px;
+          line-height: 1.43;
+          letter-spacing: -0.224px;
+          color: var(--g-link);
+          background: transparent;
+          border: 0;
+          border-radius: 0;
+          padding: 0;
+          margin: 0;
+          box-shadow: none;
+          cursor: pointer;
+
+          &:hover {
+            color: var(--g-link);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+          }
+        }
+
+        a.award.btn {
+          color: var(--g-ink);
+          cursor: default;
+          &:hover {
+            text-decoration: none;
+          }
+        }
+      }
+
+      .badges {
+        padding: var(--g-space-xs) 0 0;
+      }
+
+      .hidden {
+        font-size: 14px;
+        line-height: 1.43;
+        letter-spacing: -0.224px;
+        color: var(--g-ink-muted-80);
+        text-align: left;
+
+        p {
+          margin: var(--g-space-sm) 0 0;
+          line-height: 1.43;
+        }
+
+        pre {
+          font-size: 12px;
+          line-height: 1.5;
+          background: var(--g-canvas-parchment);
+          border-radius: var(--g-radius-sm);
+          padding: var(--g-space-sm);
+          margin: var(--g-space-sm) 0 0;
+        }
+      }
+
+      div.abstract.hidden,
+      div.abstract.hidden.open,
+      div.bibtex.hidden,
+      div.award.hidden,
+      div.award.hidden.open {
+        border: 0;
       }
     }
   }
+}
 
-  ol.bibliography > li .periodical {
-    font-family: "Newsreader", Georgia, serif;
-    font-size: 0.88rem;
-    font-style: italic;
-    color: var(--global-text-color-light);
-    margin: 0.15rem 0;
+.g-pubs {
+  margin-top: var(--g-space-xxl);
+  text-align: left;
+}
+
+body .g-pubs .publications ol.bibliography > li {
+  background: var(--g-canvas-parchment);
+  border-color: transparent;
+
+  /* home card: the venue is in the text, so the badge goes and the teaser
+     takes the full height of the text column */
+  .abbr abbr.badge {
+    display: none;
   }
+}
 
-  ol.bibliography > li .periodical + .periodical {
-    font-family: "JetBrains Mono", ui-monospace, monospace !important;
-    font-style: normal;
-    font-size: 0.68rem;
-    letter-spacing: 0.02em;
-    color: var(--global-text-color-light);
-    margin-top: 0.35rem;
+body .g-tile--parchment .publications ol.bibliography > li {
+  background: var(--g-canvas);
+  border-color: transparent;
+
+  .abbr abbr.badge {
+    background: var(--g-canvas-parchment);
   }
+}
 
-  ol.bibliography > li .links {
-    margin-top: 0.5rem;
+/* Projects on the home page: grouped, one full-width row per entry (no cards);
+   the category badge is hidden because the group heading says it; the bullet
+   points sit behind the "Show details" button (toggle script in footer.liquid). */
+.g-projects {
+  max-width: 760px;
+  margin: var(--g-space-xxl) auto 0;
+  text-align: left;
+}
+
+.g-projects__group {
+  margin-top: var(--g-space-xl);
+
+  &:first-child {
+    margin-top: 0;
   }
+}
 
-  ol.bibliography > li .links a.btn {
-    font-size: 0.68rem;
-    padding: 0.15rem 0.6rem;
-    border-radius: 4px;
-    font-family: "JetBrains Mono", ui-monospace, monospace;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin: 0.2rem 0.4rem 0 0;
-    color: var(--global-text-color);
-    border-color: var(--global-divider-color);
+.g-projects__heading {
+  font-family: var(--g-font-text);
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: -0.224px;
+  font-weight: 600;
+  color: var(--g-ink-muted-80);
+  margin: 0 0 var(--g-space-xxs);
+}
 
-    &:hover {
-      color: var(--global-theme-color);
-      border-color: var(--global-theme-color);
-      background: transparent;
+body .g-projects .publications ol.bibliography {
+  display: block;
+
+  > li {
+    margin: 0;
+    padding: var(--g-space-md) 0;
+    background: transparent;
+    border: 0;
+    border-top: 1px solid var(--g-hairline);
+    border-radius: 0;
+
+    &:last-child {
+      border-bottom: 1px solid var(--g-hairline);
+    }
+
+    .row {
+      display: block;
+      margin: 0;
+    }
+
+    .col,
+    [class*="col-"] {
+      flex: none;
+      width: auto;
+      max-width: 100%;
+      padding: 0;
+    }
+
+    .abbr {
+      display: none;
+    }
+
+    .title {
+      font-family: var(--g-font-display);
+      font-size: 21px;
+      line-height: 1.19;
+      letter-spacing: 0.231px;
+      margin-bottom: var(--g-space-xxs);
+    }
+
+    .author {
+      display: none; /* every entry is the owner's own; the heading carries the context */
+    }
+
+    .periodical {
+      font-size: 14px;
+      line-height: 1.43;
+      color: var(--g-ink-muted-80);
+
+      em {
+        font-style: normal;
+        font-weight: 400;
+        color: var(--g-ink-muted-80);
+      }
+    }
+
+    .links {
+      margin-top: var(--g-space-sm);
+      align-items: center;
+
+      a.btn {
+        font-size: 14px;
+      }
+
+      /* "Show details" as a small outline pill */
+      a.abstract.btn {
+        display: inline-flex;
+        align-items: center;
+        min-height: 28px;
+        padding: 4px 11px;
+        border: 1px solid var(--g-link);
+        border-radius: var(--g-radius-pill);
+        font-size: 12px;
+        line-height: 1;
+        letter-spacing: -0.12px;
+        color: var(--g-link);
+        transition: transform 120ms ease-out;
+
+        &:hover {
+          text-decoration: none;
+        }
+
+        &:active {
+          transform: scale(var(--g-press-scale));
+        }
+      }
+    }
+
+    div.abstract {
+      margin-top: var(--g-space-sm);
+      padding: var(--g-space-md) var(--g-space-lg);
+      background: var(--g-canvas);
+      border-radius: var(--g-radius-sm);
+      font-size: 15px;
+      line-height: 1.5;
+      color: var(--g-ink);
+
+      p {
+        margin: 0;
+      }
     }
   }
 }
 
-/* bib search input */
-.post .bibsearch-form-input,
-.post .newsletter-form-input {
-  border: 1px solid var(--global-divider-color) !important;
-  background: var(--global-card-bg-color) !important;
-  color: var(--global-text-color) !important;
-  font-family: "JetBrains Mono", ui-monospace, monospace !important;
-  font-size: 0.78rem !important;
-  border-radius: 6px !important;
-  padding: 0.5rem 0.8rem !important;
-  box-shadow: none !important;
-  max-width: 100% !important;
-  width: 100% !important;
-  margin-bottom: 1.2rem !important;
+/* ---------------------------------------------------------------------------
+ * News list (parchment tile)
+ * ------------------------------------------------------------------------- */
+.g-news {
+  list-style: none;
+  padding: 0;
+  margin: var(--g-space-xxl) auto 0;
+  max-width: 720px;
+  text-align: left;
+}
 
-  &:focus {
-    outline: 1px solid var(--global-theme-color);
-    outline-offset: -1px;
+.g-news__item {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  gap: var(--g-space-lg);
+  padding: var(--g-space-md) 0;
+  border-top: 1px solid var(--g-hairline);
+  margin: 0;
+
+  &:last-child {
+    border-bottom: 1px solid var(--g-hairline);
+  }
+
+  p {
+    margin: 0;
   }
 }
 
-/* ---------- projects page (card grid) ---------- */
+.g-news__date {
+  font-size: 14px;
+  line-height: 1.6;
+  letter-spacing: -0.224px;
+  color: var(--g-ink-muted-80);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
 
-.post .projects {
+.g-news__body {
+  font-size: 17px;
+  line-height: 1.47;
+}
+
+.g-tile--dark .g-news__item {
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+.g-tile--dark .g-news__date {
+  color: var(--g-body-muted);
+}
+
+/* News page (table from al_folio_core/news.liquid) */
+.news {
+  .table-responsive {
+    max-height: none !important;
+  }
+
+  table.table {
+    width: 100%;
+    border-collapse: collapse;
+
+    th,
+    td {
+      padding: var(--g-space-md) 0;
+      border-top: 1px solid var(--g-hairline);
+      vertical-align: top;
+      text-align: left;
+      font-size: 17px;
+      line-height: 1.47;
+    }
+
+    th {
+      font-size: 14px;
+      line-height: 1.6;
+      letter-spacing: -0.224px;
+      font-weight: 400;
+      color: var(--g-ink-muted-80);
+      white-space: nowrap;
+      padding-right: var(--g-space-lg);
+      font-variant-numeric: tabular-nums;
+    }
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * Footer — parchment band with contact links and the legal row
+ * ------------------------------------------------------------------------- */
+.g-footer {
+  background: var(--g-canvas-parchment);
+  color: var(--g-ink-muted-80);
+  margin-top: var(--g-space-section);
+  padding: var(--g-space-xxl) var(--g-space-lg) var(--g-space-lg);
+  font-size: 14px;
+  line-height: 1.43;
+  letter-spacing: -0.224px;
+
+  p,
+  span,
+  li,
+  div {
+    color: var(--g-ink-muted-80);
+  }
+}
+
+.g-home + .g-footer,
+.g-footer--flush {
   margin-top: 0;
-
-  h2.category {
-    font-family: "Newsreader", Georgia, serif;
-    font-size: 1.5rem;
-    font-weight: 500;
-    letter-spacing: -0.015em;
-    color: var(--global-text-color);
-    text-align: left;
-    text-transform: lowercase;
-    border-bottom: 1px solid var(--global-divider-color);
-    padding-bottom: 0.6rem;
-    margin: 2rem 0 1.4rem;
-  }
-
-  .card {
-    background: var(--global-card-bg-color);
-    border: 1px solid var(--global-divider-color) !important;
-    border-radius: 6px;
-    box-shadow: none;
-    transition:
-      transform 0.18s ease,
-      box-shadow 0.18s ease;
-
-    &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-    }
-  }
-
-  .card-body {
-    padding: 1.1rem 1.2rem 1.3rem;
-  }
-
-  .card-title {
-    font-family: "Newsreader", Georgia, serif;
-    font-size: 1.1rem;
-    font-weight: 500;
-    letter-spacing: -0.015em;
-    line-height: 1.25;
-    color: var(--global-text-color);
-    margin-bottom: 0.5rem;
-  }
-
-  .card-text {
-    font-family: "Newsreader", Georgia, serif;
-    font-size: 0.9rem;
-    line-height: 1.5;
-    color: var(--global-text-color-light);
-  }
-
-  a:hover .card-title {
-    color: var(--global-theme-color);
-  }
 }
 
-/* ---------- repositories page ---------- */
+.g-footer__inner {
+  max-width: var(--g-content-max);
+  margin: 0 auto;
+}
 
-.post .repositories {
+.g-footer__links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: flex-start;
-  margin-bottom: 1.4rem;
+  gap: var(--g-space-xs) var(--g-space-lg);
+  font-size: 17px;
+  line-height: 2;
 
-  img {
-    border: 1px solid var(--global-divider-color);
-    border-radius: 6px;
-  }
-}
-
-/* ---------- CV page ---------- */
-
-.cv {
-  color: var(--global-text-color);
-  font-family: "Newsreader", Georgia, serif;
-
-  .card {
-    background: var(--global-card-bg-color);
-    border: 1px solid var(--global-divider-color);
-    border-radius: 8px;
-    box-shadow: none;
-  }
-
-  .card-title {
-    font-family: "Newsreader", Georgia, serif;
-    font-weight: 500;
-    letter-spacing: -0.015em;
-    font-size: 1.25rem;
-    color: var(--global-text-color);
-    text-transform: lowercase;
-  }
-
-  .list-group {
-    background: transparent;
-  }
-
-  .list-group-item {
-    background-color: transparent !important;
-    border-color: var(--global-divider-color) !important;
-    padding: 0.85rem 1rem;
-  }
-
-  /* TOC sidebar */
-  #toc-sidebar {
-    font-family: "JetBrains Mono", ui-monospace, monospace;
-
-    .toc-link {
-      font-size: 0.74rem;
-      letter-spacing: 0.04em;
-      text-transform: lowercase;
+  a {
+    color: var(--g-ink);
+    &:hover {
+      color: var(--g-link);
     }
   }
 }
 
-/* Beat al-folio's `.cv .card .list-group-item .badge` (specificity 0,0,4,0)
-   AND its later source-order. Use a duplicate class to bump specificity
-   to 0,0,5,0 so editorial outline-chip styling wins. */
-.cv.cv .card .list-group-item .badge,
-.cv.cv .card .list-group-item .badge.font-weight-bold,
-.cv.cv .card .badge,
-.cv.cv .left-heading .badge {
-  font-family: "JetBrains Mono", ui-monospace, monospace !important;
-  font-size: 0.66rem !important;
-  letter-spacing: 0.12em !important;
-  text-transform: uppercase !important;
-  background: transparent !important;
-  background-color: transparent !important;
-  color: var(--global-theme-color) !important;
-  border: 1px solid var(--global-theme-color) !important;
-  padding: 0.18rem 0.55rem !important;
-  border-radius: 999px !important;
-  font-weight: 500 !important;
-  min-width: auto !important;
-}
+.g-footer__legal {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--g-space-xs) var(--g-space-lg);
+  margin-top: var(--g-space-xl);
+  padding-top: var(--g-space-md);
+  border-top: 1px solid var(--g-hairline);
+  font-size: 12px;
+  line-height: 1.5;
+  letter-spacing: -0.12px;
 
-.cv.cv .card .list-group-item .badge a,
-.cv.cv .card .badge a {
-  color: var(--global-theme-color) !important;
-}
-
-/* Some al-folio CV pills also use `.danger-color-dark` / similar utility
-   classes for color — neutralize those when inside a CV badge so the
-   border+text color from above isn't fought by a utility color. */
-.cv.cv .badge.danger-color-dark,
-.cv.cv .badge.color-danger-dark,
-.cv.cv .badge.font-weight-bold {
-  color: var(--global-theme-color) !important;
-  background: transparent !important;
-  background-color: transparent !important;
-}
-
-/* ============================================================================
- * Minor about-page polish (PDF micro-tuning)
- * ========================================================================= */
-
-.editorial-about {
-  /* tighten Korean subscript a touch — PDF shows it sitting closer */
-  .ed-name-ko {
-    font-size: 0.3em;
-    vertical-align: 0.85em;
-    margin-left: 0.55rem;
-    opacity: 0.85;
+  span {
+    color: var(--g-ink-muted-48);
   }
 
-  /* slightly larger 01/02 eyebrow color contrast in dark mode */
-  .ed-num {
-    font-weight: 600;
-  }
-
-  /* publications inside about — slightly tighter venue column */
-  .ed-pubs-wrap ol.bibliography > li > .row {
-    grid-template-columns: 95px 1fr;
+  a {
+    color: var(--g-ink-muted-80);
   }
 }
 
-/* ============================================================================
- * CV date/location column — al_folio_cv ships .location with
- * white-space: nowrap, which lets long strings like "Seoul, Republic of
- * Korea" overflow the narrow Bootstrap col-md-2 into the content column.
- * Allow wrap and widen the date column on md+ screens.
- * ========================================================================= */
-
-.cv.cv .date-column .location {
-  white-space: normal;
-  word-break: keep-all;
-  line-height: 1.3;
-}
-
-@media (min-width: 768px) {
-  .cv.cv .row > .date-column {
-    flex: 0 0 22%;
-    max-width: 22%;
-    padding-right: 0.75rem;
-  }
-  .cv.cv .row > .date-column + [class*="col-"] {
-    flex: 0 0 78%;
-    max-width: 78%;
+/* ---------------------------------------------------------------------------
+ * Responsive — 1068 / 834 / 736 / 640 / 420
+ * ------------------------------------------------------------------------- */
+@media (max-width: 1068px) {
+  .g-hero__name {
+    font-size: 40px;
+    line-height: 1.1;
+    letter-spacing: 0;
   }
 }
 
-/* "자세히 보기" detail toggle — the click handler is wired in footer.liquid
-   (the gem's default abstract-toggle JS isn't active in this build). */
-.bibliography a.abstract.btn { cursor: pointer; }
-.bibliography div.abstract {
-  margin-top: 0.5rem;
-  font-size: 0.92rem;
-  line-height: 1.6;
-  color: var(--global-text-color-light);
+
+
+@media (max-width: 736px) {
+  .g-tile {
+    padding-top: var(--g-space-xxl);
+    padding-bottom: var(--g-space-xxl);
+  }
+
+  .g-hero {
+    padding-top: calc(var(--g-space-xxl) + var(--g-space-md));
+  }
+
+  .g-tile__headline,
+  .post .post-title,
+  h1 {
+    font-size: 34px;
+    line-height: 1.15;
+  }
+
+  .g-tile__lead,
+  .g-hero__statement {
+    font-size: 21px;
+    line-height: 1.19;
+    letter-spacing: 0.231px;
+  }
+
+  .g-news__item {
+    grid-template-columns: 1fr;
+    gap: var(--g-space-xxs);
+  }
 }
-.bibliography div.abstract p { margin: 0; }
+
+@media (max-width: 640px) {
+  .g-hero__name {
+    font-size: 34px;
+  }
+}
+
+@media (max-width: 736px) {
+  body .publications ol.bibliography > li {
+    padding: var(--g-space-md);
+
+    .row {
+      grid-template-columns: 1fr;
+      row-gap: var(--g-space-md);
+    }
+
+    .abbr .preview {
+      flex: none;
+      width: 100%;
+      max-width: 280px;
+      height: auto;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  /* four hero buttons fold 2 + 2 instead of 3 + 1 */
+  .g-hero .g-tile__ctas .g-btn {
+    flex: 1 1 calc(50% - var(--g-space-xs));
+    max-width: 200px;
+  }
+}
+
+@media (max-width: 420px) {
+  .g-hero__name {
+    font-size: 28px;
+  }
+}
+
+/* Print: flatten tiles */
+@media print {
+  .g-tile,
+  .g-footer {
+    margin-left: 0;
+    margin-right: 0;
+    background: #fff !important;
+    color: #000 !important;
+  }
+}
