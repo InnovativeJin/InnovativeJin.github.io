@@ -1,17 +1,15 @@
 /*******************************************************************************
- * Navigation bar — Editorial Classic
- * PDF design: brand left, nav links right, current item italic+underlined,
- * ctrl+k chip + dark mode toggle on far right. Subtle divider below.
+ * Navigation bar — Gallery
+ * One 44px true-black bar: the owner's name left, 12px section links right,
+ * the theme toggle last. Links stay visible on every width (no hamburger).
+ * Local override of al_folio_core/_sass/_navbar.scss.
  ******************************************************************************/
 
 @use "variables" as v;
 
-/* Override al_folio_core's tailwind.css bug:
-   .fixed-top compiles to `top: calc(var( -  - spacing) * 0)` with broken
-   variable name (literal spaces around dashes from the v4 minifier).
-   That fallback makes top/left/right resolve to `auto`, so the fixed
-   navbar collapses to its content width and sits at the viewport's
-   top-left corner instead of spanning the full width. Force literal 0s. */
+/* al_folio_core's tailwind.css compiles .fixed-top with a broken spacing
+   variable, which makes top/left/right resolve to `auto` and collapses the bar
+   to its content width. Force literal zeros. */
 .navbar.fixed-top {
   position: fixed !important;
   top: 0 !important;
@@ -22,310 +20,205 @@
 }
 
 .navbar {
+  height: var(--g-nav-height);
+  min-height: var(--g-nav-height);
+  padding: 0;
+  margin: 0;
   box-shadow: none;
-  border-bottom: 1px solid var(--global-divider-color);
-  background-color: var(--global-bg-color);
-  opacity: 0.98;
-  padding-top: 1.2rem;
-  padding-bottom: 1.2rem;
+  border: 0;
+  background-color: var(--g-surface-black) !important;
+  opacity: 1;
+  z-index: 1030;
 
-  /* Tailwind v4's .container utility doesn't auto-center; al-folio's
-     components layer adds margin-inline:auto but in the navbar context
-     it gets stripped, so force centering explicitly here. */
+  /* Tailwind v4's .container doesn't auto-center here; center it explicitly. */
   > .container {
     display: flex !important;
-    flex-wrap: inherit;
+    flex-wrap: nowrap;
     justify-content: space-between;
     align-items: center;
+    height: var(--g-nav-height);
     width: 100% !important;
-    max-width: var(--max-content-width) !important;
+    max-width: var(--g-content-max) !important;
     margin-left: auto !important;
     margin-right: auto !important;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: var(--g-space-lg);
+    padding-right: var(--g-space-lg);
   }
 
   .navbar-brand {
-    font-family: "Newsreader", Georgia, serif;
-    font-weight: 500;
-    font-size: 1.15rem;
-    letter-spacing: -0.01em;
-    color: var(--global-text-color);
-    padding-top: 0;
-    padding-bottom: 0;
-    margin-right: 0;
+    font-family: var(--g-font-text);
+    font-size: 14px;
+    line-height: 1;
+    font-weight: 600;
+    letter-spacing: -0.224px;
+    color: var(--g-on-dark) !important;
+    padding: 0;
+    margin: 0;
     white-space: nowrap;
 
     &:hover {
       text-decoration: none;
-      color: var(--global-text-color);
+      color: var(--g-on-dark) !important;
     }
+  }
 
-    .font-weight-bold {
-      font-weight: 500;
-    }
+  /* The hamburger is never needed: five 12px links fit a phone. */
+  .navbar-toggler {
+    display: none !important;
   }
 
   .navbar-collapse-main {
+    display: flex !important;
     flex: 1 1 auto !important;
     width: auto !important;
-    display: flex !important;
     justify-content: flex-end;
-    text-align: right;
+    height: auto !important;
+    visibility: visible !important;
   }
 
   .navbar-menu-list {
-    margin-left: auto !important;
-    margin-right: 0;
-    align-items: center;
-    gap: 0;
+    display: flex;
     flex-direction: row;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 20px;
+    margin: 0 0 0 auto !important;
+    padding: 0;
+    list-style: none;
   }
 
   .navbar-menu-list .nav-item {
-    margin-left: 2rem;
-  }
-
-  .navbar-menu-list .nav-item:first-child {
-    margin-left: 0;
-  }
-
-  /* tighter gap between the ctrl+k chip and the dark-mode toggle */
-  .navbar-menu-list .toggle-container {
-    margin-left: 1rem;
-  }
-}
-
-.navbar.navbar-light {
-  a:hover {
-    text-decoration: none;
-  }
-
-  .navbar-brand {
-    color: var(--global-text-color);
+    margin: 0;
+    padding: 0;
   }
 
   .navbar-nav .nav-item .nav-link {
-    color: var(--global-text-color-light);
-    font-family: "Newsreader", Georgia, serif;
-    font-size: 0.95rem;
+    display: inline-block;
+    font-family: var(--g-font-text);
+    font-size: 12px;
+    line-height: 1;
     font-weight: 400;
-    padding: 0.25rem 0.1rem;
-    border-bottom: 1px solid transparent;
-    transition:
-      color 0.15s ease,
-      border-color 0.15s ease;
+    letter-spacing: -0.12px;
+    text-transform: capitalize;
+    color: var(--g-on-dark) !important;
+    opacity: 0.8;
+    padding: 6px 0;
+    border: 0;
+    transition: opacity 120ms ease-out;
 
     &:hover {
-      color: var(--global-text-color);
+      opacity: 1;
+      text-decoration: none;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--g-primary-focus);
+      outline-offset: 4px;
+      border-radius: var(--g-radius-xs);
     }
   }
 
   .navbar-nav .nav-item.active > .nav-link {
-    background-color: inherit;
-    font-style: italic;
+    opacity: 1;
     font-weight: 400;
-    color: var(--global-text-color);
-    border-bottom: 1px solid var(--global-text-color);
-  }
-
-  .navbar-nav .nav-item.active > .nav-link:hover {
-    color: var(--global-text-color);
+    font-style: normal;
+    background: transparent;
+    border: 0;
   }
 
   .navbar-brand.social {
-    padding-bottom: 0;
-    padding-top: 0;
-    font-size: 1.7rem;
-
-    a {
-      img,
-      svg {
-        width: 1.7rem;
-        height: 1.7rem;
-        margin-bottom: 0.5rem;
-      }
-
-      svg image {
-        width: 1.7rem;
-        height: 1.7rem;
-      }
-
-      i::before {
-        color: var(--global-text-color);
-        transition-property: all 0.2s ease-in-out;
-      }
-
-      &:hover i::before {
-        color: var(--global-theme-color);
-      }
-    }
+    display: none;
   }
 }
 
-.navbar .dropdown-menu,
-.btn-group.dropdown .dropdown-menu {
-  background-color: var(--global-bg-color);
-  border: 1px solid var(--global-divider-color);
+/* Dropdowns (unused by this site, kept legible if a page adds one) */
+.dropdown-menu {
+  background-color: var(--g-surface-tile-1);
+  border: 1px solid var(--g-hairline);
+  border-radius: var(--g-radius-sm);
+  padding: var(--g-space-xs) 0;
 
-  a:not(.active) {
-    color: var(--global-text-color);
-  }
+  .dropdown-item {
+    color: var(--g-on-dark);
+    font-size: 14px;
+    padding: var(--g-space-xs) var(--g-space-md);
 
-  a:hover {
-    color: var(--global-hover-color);
+    &:hover,
+    &.active {
+      background: var(--g-surface-tile-2);
+      color: var(--g-on-dark);
+    }
   }
 
   .dropdown-divider {
-    border-top: 1px solid var(--global-divider-color) !important;
+    border-top: 1px solid var(--g-hairline);
   }
 }
 
-.dropdown-item {
-  color: var(--global-text-color);
-
-  &:hover {
-    color: var(--global-hover-color);
-    background-color: var(--global-bg-color);
-  }
-}
-
-.dropdown-item.active,
-.dropdown-item:active {
-  background-color: var(--global-hover-color);
-  color: var(--global-hover-text-color) !important;
-
-  &:hover {
-    color: var(--global-hover-text-color);
-  }
-}
-
-/* ctrl+k search chip styled like the design. */
+/* Search toggle (off in _config.yml; styled in case it is turned back on) */
 #search-toggle {
   padding: 0;
   border: 0;
-  background-color: inherit;
-  color: var(--global-text-color);
+  background: transparent;
+  color: var(--g-on-dark);
   cursor: pointer;
-
-  &:hover {
-    color: var(--global-hover-color);
-
-    .nav-link {
-      border-color: color-mix(in srgb, var(--global-text-color) 22%, transparent);
-    }
-  }
 
   .nav-link {
     display: inline-flex;
     align-items: center;
-    gap: 0.45rem;
-    padding: 0.3rem 0.7rem;
-    font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.04em;
-    color: var(--global-text-color-light);
-    background: var(--global-card-bg-color);
-    border: 1px solid var(--global-divider-color);
-    border-radius: 6px;
-    text-transform: lowercase;
-    transition: border-color 0.15s ease;
-
-    i {
-      font-size: 0.7rem;
-      opacity: 0.7;
-    }
+    gap: var(--g-space-xxs);
+    padding: 6px 0;
+    font-size: 12px;
+    color: var(--g-on-dark);
+    opacity: 0.8;
   }
 
-  .ed-kbd-plus {
-    opacity: 0.45;
-    margin: 0 0.05rem;
+  &:hover .nav-link {
+    opacity: 1;
   }
 }
 
+/* Theme toggle */
 #light-toggle {
   padding: 0;
   border: 0;
-  background-color: inherit;
-  color: var(--global-text-color);
+  background: transparent;
+  color: var(--g-on-dark);
+  opacity: 0.8;
   cursor: pointer;
-  width: 2rem;
-  height: 2rem;
+  width: 28px;
+  height: 28px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  font-size: 13px;
+  transition: opacity 120ms ease-out;
 
   &:hover {
-    color: var(--global-hover-color);
-  }
-}
-
-@media (min-width: 576px) {
-  #light-toggle {
-    transform: translateY(0);
-  }
-}
-
-@media (max-width: 575.98px) {
-  .navbar {
-    .navbar-toggler-main {
-      margin-left: auto;
-    }
-
-    .navbar-collapse-main {
-      text-align: left;
-    }
-
-    .navbar-menu-list {
-      flex-direction: column;
-      margin-left: 0;
-      align-items: flex-start;
-      width: 100%;
-      gap: 0;
-    }
-
-    .navbar-menu-list .nav-item {
-      margin-left: 0;
-    }
-  }
-}
-
-.navbar-toggler {
-  .icon-bar {
-    display: block;
-    width: 22px;
-    height: 2px;
-    background-color: var(--global-text-color);
-    border-radius: 1px;
-    margin-bottom: 4px;
-    transition: all 0.2s;
-  }
-
-  .top-bar {
-    transform: rotate(45deg);
-    transform-origin: 10% 10%;
-  }
-
-  .middle-bar {
-    opacity: 0;
-  }
-
-  .bottom-bar {
-    transform: rotate(-45deg);
-    transform-origin: 10% 90%;
-  }
-}
-
-.navbar-toggler.collapsed {
-  .top-bar {
-    transform: rotate(0);
-  }
-
-  .middle-bar {
     opacity: 1;
+    color: var(--g-on-dark);
   }
 
-  .bottom-bar {
-    transform: rotate(0);
+  &:focus-visible {
+    outline: 2px solid var(--g-primary-focus);
+    outline-offset: 2px;
+    border-radius: var(--g-radius-pill);
+  }
+}
+
+.navbar-menu-list .toggle-container {
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+}
+
+@media (max-width: 420px) {
+  .navbar > .container {
+    padding-left: var(--g-space-md);
+    padding-right: var(--g-space-md);
+  }
+
+  .navbar .navbar-menu-list {
+    gap: 14px;
   }
 }

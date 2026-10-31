@@ -2,7 +2,7 @@
 layout: page
 permalink: /projects/
 title: projects
-description: Selected research and coursework projects in reverse chronological order. Click "Show details" on any entry for more information.
+description: Research threads and coursework projects, newest first. Open "Show details" on an entry for more.
 nav: true
 nav_order: 3
 ---

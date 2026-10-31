@@ -1,23 +1,37 @@
 {% comment %}
-  Editorial footer override.
-  - About page (layout: about) renders its own footer inline — skip here.
-  - Other pages get a slim flowing footer (no fixed-bottom overlap).
+  Gallery footer override: a parchment band on every page with the contact
+  links and a 12px legal row. On the home page it sits flush under the last tile.
 {% endcomment %}
-
-{% unless page.layout == 'about' %}
-  <footer class="ed-page-footer" role="contentinfo">
-    <div class="container">
-      <span class="ed-page-footer-text">
-        © {{ site.time | date: '%Y' }}
+<footer class="g-footer{% if page.layout == 'about' %} g-footer--flush{% endif %}" role="contentinfo">
+  <div class="g-footer__inner">
+    <ul class="g-footer__links">
+      {% if site.data.socials.email %}
+        <li><a href="mailto:{{ site.data.socials.email | encode_email }}">Email</a></li>
+      {% endif %}
+      {% if site.data.socials.scholar_userid %}
+        <li><a href="https://scholar.google.com/citations?user={{ site.data.socials.scholar_userid }}">Google Scholar</a></li>
+      {% endif %}
+      {% if site.data.socials.github_username %}
+        <li><a href="https://github.com/{{ site.data.socials.github_username }}">GitHub</a></li>
+      {% endif %}
+      {% if site.data.socials.linkedin_username %}
+        <li><a href="https://www.linkedin.com/in/{{ site.data.socials.linkedin_username }}">LinkedIn</a></li>
+      {% endif %}
+      <li><a href="{{ '/cv/' | relative_url }}">CV</a></li>
+    </ul>
+    <div class="g-footer__legal">
+      <span>
+        &copy; {{ site.time | date: '%Y' }}
         {{ site.first_name }}
         {{ site.last_name }}
         {%- if site.last_updated %} · Last updated {{ site.time | date: '%b %Y' }}{% endif -%}
       </span>
+      <span>{{ site.footer_text }}</span>
     </div>
-  </footer>
-{% endunless %}
+  </div>
+</footer>
 
-{% comment %} Working "자세히 보기" (show details) toggle for bibliography abstracts. {% endcomment %}
+{% comment %} "Show details" toggle for bibliography abstracts (projects page). {% endcomment %}
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll("a.abstract.btn").forEach(function (btn) {
