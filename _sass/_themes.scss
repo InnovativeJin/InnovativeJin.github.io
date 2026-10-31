@@ -759,9 +759,9 @@ body .publications {
       /* figure column (badge above the teaser) + text column */
       .row {
         display: grid;
-        grid-template-columns: 300px minmax(0, 1fr);
+        grid-template-columns: 180px minmax(0, 1fr);
         column-gap: var(--g-space-lg);
-        align-items: start;
+        align-items: stretch; /* the figure column takes the text column's height */
         margin: 0;
       }
 
@@ -804,15 +804,20 @@ body .publications {
           }
         }
 
+        /* the teaser fills whatever height the text column leaves under the badge,
+           never taller than the text: flex-basis 0 keeps it out of the row's height */
         .preview {
           display: block;
+          flex: 1 1 0;
+          min-height: 0;
           width: 100%;
           max-width: 100%;
-          height: auto;
-          border: 1px solid var(--g-hairline);
-          border-radius: var(--g-radius-sm);
+          object-fit: contain;
+          object-position: left top;
+          border: 0;
+          border-radius: 0;
           box-shadow: none;
-          background: var(--g-canvas);
+          pointer-events: none;
         }
       }
 
@@ -941,8 +946,10 @@ body .g-pubs .publications ol.bibliography > li {
   background: var(--g-canvas-parchment);
   border-color: transparent;
 
+  /* home card: the venue is in the text, so the badge goes and the teaser
+     takes the full height of the text column */
   .abbr abbr.badge {
-    background: var(--g-canvas);
+    display: none;
   }
 }
 
@@ -1294,6 +1301,13 @@ body .g-projects .publications ol.bibliography {
     .row {
       grid-template-columns: 1fr;
       row-gap: var(--g-space-md);
+    }
+
+    .abbr .preview {
+      flex: none;
+      width: 100%;
+      max-width: 280px;
+      height: auto;
     }
   }
 }
