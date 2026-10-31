@@ -99,7 +99,7 @@ layout: default
     </section>
   {% endif %}
 
-  <!-- Projects -->
+  <!-- Projects: three fixed groups, read from projects.bib by `category` -->
   {% if page.projects %}
     <section class="g-tile g-tile--parchment" id="projects">
       <div class="g-tile__inner">
@@ -107,10 +107,26 @@ layout: default
         {% if page.projects_lead %}
           <p class="g-tile__lead">{{ page.projects_lead }}</p>
         {% endif %}
-        <div class="g-pubs g-projects">
-          <div class="publications">
-            {% bibliography --file projects --group_by none --query @*[selected=true]* %}
-          </div>
+        {% assign groups = page.projects_groups %}
+        <div class="g-projects">
+          <section class="g-projects__group">
+            <h3 class="g-projects__heading">{{ groups[0].title | default: 'Research experience' }}</h3>
+            <div class="publications">
+              {% bibliography --file projects --group_by none --query @*[category=research] %}
+            </div>
+          </section>
+          <section class="g-projects__group">
+            <h3 class="g-projects__heading">{{ groups[1].title | default: 'Capstone' }}</h3>
+            <div class="publications">
+              {% bibliography --file projects --group_by none --query @*[category=capstone] %}
+            </div>
+          </section>
+          <section class="g-projects__group">
+            <h3 class="g-projects__heading">{{ groups[2].title | default: 'Course projects' }}</h3>
+            <div class="publications">
+              {% bibliography --file projects --group_by none --query @*[category=course] %}
+            </div>
+          </section>
         </div>
       </div>
     </section>

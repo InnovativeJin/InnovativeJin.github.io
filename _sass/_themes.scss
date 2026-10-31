@@ -915,30 +915,133 @@ body .g-tile--parchment .publications ol.bibliography > li {
   }
 }
 
-/* Projects on the home page: a two-column card grid, badge above the title */
-.g-projects .publications ol.bibliography {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--g-space-lg);
+/* Projects on the home page: grouped, one full-width row per entry (no cards);
+   the category badge is hidden because the group heading says it; the bullet
+   points sit behind the "Show details" button (toggle script in footer.liquid). */
+.g-projects {
+  max-width: 760px;
+  margin: var(--g-space-xxl) auto 0;
+  text-align: left;
 }
 
-body .g-projects .publications ol.bibliography > li {
-  margin: 0;
+.g-projects__group {
+  margin-top: var(--g-space-xl);
 
-  .row {
-    flex-direction: column;
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+.g-projects__heading {
+  font-family: var(--g-font-text);
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: -0.224px;
+  font-weight: 600;
+  color: var(--g-ink-muted-80);
+  margin: 0 0 var(--g-space-xxs);
+}
+
+body .g-projects .publications ol.bibliography {
+  display: block;
+
+  > li {
     margin: 0;
-  }
+    padding: var(--g-space-md) 0;
+    background: transparent;
+    border: 0;
+    border-top: 1px solid var(--g-hairline);
+    border-radius: 0;
 
-  .col,
-  [class*="col-"] {
-    flex: 0 0 100%;
-    max-width: 100%;
-    padding: 0;
-  }
+    &:last-child {
+      border-bottom: 1px solid var(--g-hairline);
+    }
 
-  .abbr {
-    margin-bottom: var(--g-space-xs);
+    .row {
+      flex-direction: column;
+      margin: 0;
+    }
+
+    .col,
+    [class*="col-"] {
+      flex: 0 0 100%;
+      max-width: 100%;
+      padding: 0;
+    }
+
+    .abbr {
+      display: none;
+    }
+
+    .title {
+      font-family: var(--g-font-display);
+      font-size: 21px;
+      line-height: 1.19;
+      letter-spacing: 0.231px;
+      margin-bottom: var(--g-space-xxs);
+    }
+
+    .author {
+      display: none; /* every entry is the owner's own; the heading carries the context */
+    }
+
+    .periodical {
+      font-size: 14px;
+      line-height: 1.43;
+      color: var(--g-ink-muted-80);
+
+      em {
+        font-style: normal;
+        font-weight: 400;
+        color: var(--g-ink-muted-80);
+      }
+    }
+
+    .links {
+      margin-top: var(--g-space-sm);
+      align-items: center;
+
+      a.btn {
+        font-size: 14px;
+      }
+
+      /* "Show details" as a small outline pill */
+      a.abstract.btn {
+        display: inline-flex;
+        align-items: center;
+        min-height: 28px;
+        padding: 4px 11px;
+        border: 1px solid var(--g-link);
+        border-radius: var(--g-radius-pill);
+        font-size: 12px;
+        line-height: 1;
+        letter-spacing: -0.12px;
+        color: var(--g-link);
+        transition: transform 120ms ease-out;
+
+        &:hover {
+          text-decoration: none;
+        }
+
+        &:active {
+          transform: scale(var(--g-press-scale));
+        }
+      }
+    }
+
+    div.abstract {
+      margin-top: var(--g-space-sm);
+      padding: var(--g-space-md) var(--g-space-lg);
+      background: var(--g-canvas);
+      border-radius: var(--g-radius-sm);
+      font-size: 15px;
+      line-height: 1.5;
+      color: var(--g-ink);
+
+      p {
+        margin: 0;
+      }
+    }
   }
 }
 
@@ -1105,11 +1208,7 @@ body .g-projects .publications ol.bibliography > li {
   }
 }
 
-@media (max-width: 834px) {
-  .g-projects .publications ol.bibliography {
-    grid-template-columns: 1fr;
-  }
-}
+
 
 @media (max-width: 736px) {
   .g-tile {
