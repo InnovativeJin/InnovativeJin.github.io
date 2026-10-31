@@ -756,12 +756,29 @@ body .publications {
       border-radius: var(--g-radius-lg);
       text-align: left;
 
+      /* figure column (badge above the teaser) + text column */
       .row {
-        align-items: flex-start;
+        display: grid;
+        grid-template-columns: 300px minmax(0, 1fr);
+        column-gap: var(--g-space-lg);
+        align-items: start;
+        margin: 0;
+      }
+
+      .col,
+      [class*="col-"] {
+        flex: none;
+        width: auto;
+        max-width: 100%;
+        padding: 0;
       }
 
       .abbr {
-        margin-bottom: var(--g-space-xs);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--g-space-sm);
+        margin-bottom: 0;
 
         abbr.badge {
           display: inline-block;
@@ -790,9 +807,12 @@ body .publications {
         .preview {
           display: block;
           width: 100%;
-          max-width: 140px;
+          max-width: 100%;
+          height: auto;
+          border: 1px solid var(--g-hairline);
           border-radius: var(--g-radius-sm);
           box-shadow: none;
+          background: var(--g-canvas);
         }
       }
 
@@ -978,13 +998,14 @@ body .g-projects .publications ol.bibliography {
     }
 
     .row {
-      flex-direction: column;
+      display: block;
       margin: 0;
     }
 
     .col,
     [class*="col-"] {
-      flex: 0 0 100%;
+      flex: none;
+      width: auto;
       max-width: 100%;
       padding: 0;
     }
@@ -1264,18 +1285,15 @@ body .g-projects .publications ol.bibliography {
   .g-hero__name {
     font-size: 34px;
   }
+}
 
-  .publications ol.bibliography > li {
+@media (max-width: 736px) {
+  body .publications ol.bibliography > li {
     padding: var(--g-space-md);
 
     .row {
-      flex-direction: column;
-    }
-
-    .col,
-    [class*="col-"] {
-      flex: 0 0 100%;
-      max-width: 100%;
+      grid-template-columns: 1fr;
+      row-gap: var(--g-space-md);
     }
   }
 }

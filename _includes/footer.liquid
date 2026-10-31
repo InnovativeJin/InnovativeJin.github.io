@@ -31,9 +31,16 @@
   </div>
 </footer>
 
-{% comment %} "Show details" toggle for bibliography abstracts (projects page). {% endcomment %}
+{% comment %} "Show details" toggle for bibliography abstracts, and click-to-open on publication teasers. {% endcomment %}
 <script>
   document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".publications img.preview").forEach(function (img) {
+      img.style.cursor = "zoom-in";
+      img.setAttribute("title", "Open full size");
+      img.addEventListener("click", function () {
+        window.open(img.currentSrc || img.src, "_blank", "noopener");
+      });
+    });
     document.querySelectorAll("a.abstract.btn").forEach(function (btn) {
       var entry = btn.closest("li") || btn.parentElement;
       var content = entry.querySelector("div.abstract");
