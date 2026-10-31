@@ -266,6 +266,14 @@ html[data-theme-setting="light"] {
 html {
   font-family: var(--g-font-text);
   -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--g-nav-height) + var(--g-space-xs));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 body {
@@ -595,6 +603,23 @@ blockquote {
   margin: var(--g-space-xl) auto 0;
 }
 
+.g-hero__links {
+  list-style: none;
+  padding: 0;
+  margin: var(--g-space-lg) 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--g-space-xs) var(--g-space-lg);
+  font-size: 14px;
+  line-height: 1.43;
+  letter-spacing: -0.224px;
+
+  li {
+    margin: 0;
+  }
+}
+
 .g-hero__photo {
   margin: var(--g-space-xxl) auto 0;
   width: 240px;
@@ -621,57 +646,6 @@ blockquote {
   p:last-child {
     margin-bottom: 0;
   }
-}
-
-/* ---------------------------------------------------------------------------
- * Research threads (dark tile)
- * ------------------------------------------------------------------------- */
-.g-threads {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--g-space-lg);
-  margin: var(--g-space-xxl) auto 0;
-  text-align: left;
-  list-style: none;
-  padding: 0;
-}
-
-.g-thread {
-  background: var(--g-surface-tile-2);
-  border-radius: var(--g-radius-lg);
-  padding: var(--g-space-lg);
-  margin: 0;
-}
-
-.g-thread__period {
-  font-size: 14px;
-  line-height: 1.43;
-  letter-spacing: -0.224px;
-  color: var(--g-body-muted) !important;
-  margin: 0 0 var(--g-space-xs);
-}
-
-.g-thread__title {
-  font-family: var(--g-font-display);
-  font-size: 21px;
-  line-height: 1.19;
-  letter-spacing: 0.231px;
-  font-weight: 600;
-  margin: 0 0 var(--g-space-xs);
-}
-
-.g-thread__summary {
-  margin: 0;
-  font-size: 17px;
-  line-height: 1.47;
-}
-
-.g-thread__link {
-  display: inline-block;
-  margin-top: var(--g-space-sm);
-  font-size: 14px;
-  line-height: 1.43;
-  letter-spacing: -0.224px;
 }
 
 /* ---------------------------------------------------------------------------
@@ -717,7 +691,9 @@ body .publications {
 
         abbr.badge {
           display: inline-block;
-          width: auto !important;
+          /* tailwind's layered `.w-100 { width:100% !important }` outranks any
+             unlayered override, so constrain the pill with max-width instead */
+          max-width: max-content;
           background: var(--g-canvas-parchment);
           color: var(--g-ink) !important;
           font-family: var(--g-font-text);
@@ -870,11 +846,46 @@ body .publications {
 body .g-pubs .publications ol.bibliography > li {
   background: var(--g-canvas-parchment);
   border-color: transparent;
+
+  .abbr abbr.badge {
+    background: var(--g-canvas);
+  }
 }
 
 body .g-tile--parchment .publications ol.bibliography > li {
   background: var(--g-canvas);
   border-color: transparent;
+
+  .abbr abbr.badge {
+    background: var(--g-canvas-parchment);
+  }
+}
+
+/* Projects on the home page: a two-column card grid, badge above the title */
+.g-projects .publications ol.bibliography {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--g-space-lg);
+}
+
+body .g-projects .publications ol.bibliography > li {
+  margin: 0;
+
+  .row {
+    flex-direction: column;
+    margin: 0;
+  }
+
+  .col,
+  [class*="col-"] {
+    flex: 0 0 100%;
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .abbr {
+    margin-bottom: var(--g-space-xs);
+  }
 }
 
 /* ---------------------------------------------------------------------------
@@ -917,6 +928,14 @@ body .g-tile--parchment .publications ol.bibliography > li {
 .g-news__body {
   font-size: 17px;
   line-height: 1.47;
+}
+
+.g-tile--dark .g-news__item {
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+.g-tile--dark .g-news__date {
+  color: var(--g-body-muted);
 }
 
 /* News page (table from al_folio_core/news.liquid) */
@@ -1033,7 +1052,7 @@ body .g-tile--parchment .publications ol.bibliography > li {
 }
 
 @media (max-width: 834px) {
-  .g-threads {
+  .g-projects .publications ol.bibliography {
     grid-template-columns: 1fr;
   }
 }

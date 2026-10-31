@@ -49,6 +49,13 @@
             </a>
           </li>
 
+          <!-- Home-page sections (anchors; see site.home_nav in _config.yml) -->
+          {% for item in site.home_nav %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{ '/' | relative_url }}#{{ item.anchor }}">{{ item.title }}</a>
+            </li>
+          {% endfor %}
+
           <!-- Other pages -->
           {% assign sorted_pages = site.pages | sort: 'nav_order' %}
           {% for p in sorted_pages %}

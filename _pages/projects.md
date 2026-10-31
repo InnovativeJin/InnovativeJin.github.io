@@ -3,7 +3,7 @@ layout: page
 permalink: /projects/
 title: projects
 description: Research threads and coursework projects, newest first. Open "Show details" on an entry for more.
-nav: true
+nav: false # reached from the home page sections
 nav_order: 3
 ---
 

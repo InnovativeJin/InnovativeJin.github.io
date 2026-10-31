@@ -82,6 +82,14 @@ al_folio:
 # Layout
 # -----------------------------------------------------------------------------
 
+# Home-page sections listed in the nav as anchor links (ids live in _layouts/about.liquid)
+home_nav:
+  - title: Research
+    anchor: research
+  - title: Projects
+    anchor: projects
+  - title: Publications
+    anchor: publications
 navbar_fixed: true
 footer_fixed: false
 search_enabled: false
