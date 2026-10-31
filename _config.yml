@@ -9,12 +9,11 @@ last_name: Kim
 contact_note: >
   Feel free to reach out via email for research collaborations or questions.
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
-  M.S. candidate at the Computer Vision Lab, Yonsei University. Research interests include computer vision, deep learning, and representation learning.
+  M.S. candidate in the YU–KIST cooperative graduate program. Research on multimodal learning for predictive physical interaction understanding — temporal action analysis, vision–language retrieval, and domain generalization.
 footer_text: >
   Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
   Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
-  Photos from <a href="https://unsplash.com" target="_blank">Unsplash</a>.
-keywords: person-reid, multimodal-learning, vision-language-models, open-vocabulary-object-detection, deep-learning
+keywords: multimodal-learning, vision-language-models, temporal-action-understanding, person-reid, domain-generalization, physical-interaction
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
 icon: 🔬 # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
 

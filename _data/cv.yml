@@ -1,30 +1,47 @@
 cv:
   name: Hyukjin Kim
-  label: M.S. Candidate · Computer Vision
-  email: ekaterina9@yonsei.ac.kr
-  phone: "+82 010.8621.4609"
+  label: M.S. Candidate · Multimodal Learning
+  email: hyuk_jin@yonsei.ac.kr
+  phone: "+82 10-8621-4609"
   location: Seoul, Republic of Korea
   image: ""
   summary: >
-    M.S. candidate at the Computer Vision Lab, Yonsei University. Research interests
-    include open-vocabulary object detection, vision-language models, and multimodal
-    learning. B.S. in Electrical & Electronic Engineering from Yonsei University.
+    M.S. candidate in the YU–KIST cooperative graduate program, jointly advised by
+    Dr. Heeseung Choi (KIST) and Prof. Bumsub Ham (Yonsei). Research focuses on
+    multimodal learning for predictive physical interaction understanding —
+    temporal action analysis, vision–language retrieval, and domain generalization.
 
   social_networks:
     - network: LinkedIn
       username: hyukjin-kim-bb3372402
+    - network: GitHub
+      username: InnovativeJin
 
   sections:
+    Research Interests:
+      - name: Multimodal Learning for Predictive Physical Interaction Understanding
+        summary: >
+          Developing multimodal models that reason about how agents interact with
+          objects and anticipate the physical consequences of their actions.
+          Building on temporal action analysis, vision–language retrieval, and
+          domain generalization, I aim to learn transferable representations of
+          motion, object states, and interaction context from multimodal
+          observations — to support reliable decision-making in dynamic,
+          real-world environments.
+
     Education:
       - institution: Yonsei University
         location: Seoul, Republic of Korea
         url: https://cvlab.yonsei.ac.kr
-        area: Computer Vision Lab
-        studyType: M.S.
+        area: Electrical & Electronic Engineering
+        studyType: M.S. (expected Aug. 2027)
         start_date: 2025-09
         end_date: Present
         highlights:
-          - Advised by Prof. Bumsub Ham. Research on open-vocabulary object detection, vision-language models, and multimodal learning.
+          - YU–KIST cooperative graduate program; research conducted at Korea Institute of Science and Technology (KIST).
+          - Combined M.S./Ph.D. program; transferring to the M.S. track in Jan. 2027.
+          - "Advisors: Dr. Heeseung Choi (KIST), Prof. Bumsub Ham (Yonsei)."
+          - "GPA: 3.81 / 4.30."
 
       - institution: Yonsei University
         location: Seoul, Republic of Korea
@@ -33,90 +50,211 @@ cv:
         start_date: 2023-03
         end_date: 2025-08
         highlights:
-          - "GPA 3.80 / 4.30."
-          - "Graduation research on open-vocabulary object detection — EE-Festival Most Popular Award (3rd place)."
+          - "GPA: 3.83 / 4.30 (96.0 / 100)."
+          - "Capstone: *Research on Improving the Performance of Open-Vocabulary Object Detection*."
 
       - institution: Inha University
         location: Incheon, Republic of Korea
         area: Electrical Engineering
-        studyType: B.S. (transferred)
+        studyType: Undergraduate coursework
         start_date: 2019-03
         end_date: 2023-02
         highlights:
-          - "GPA 4.10 / 4.50. Transferred to Yonsei University in 2023."
+          - "GPA: 3.71 / 4.00. Transferred to Yonsei University in Mar. 2023."
+          - Changed major from Civil Engineering to Electrical Engineering in Feb. 2020.
+          - Completed 18 months of mandatory military service (Mar. 2020 – Sep. 2021).
+
+    Research Experience:
+      - position: Student Researcher
+        institution: Visual Intelligence Group, KIST
+        location: Seoul, Republic of Korea
+        start_date: 2026-08
+        end_date: Present
+        name: Robust Text-to-Image Person Re-Identification for Real-World Search
+        highlights:
+          - Investigating text-based person retrieval for missing-person and suspect searches where reference images are unavailable and only natural-language descriptions may be provided.
+
+      - position: Student Researcher
+        institution: Visual Intelligence Group, KIST
+        location: Seoul, Republic of Korea
+        start_date: 2026-04
+        end_date: 2026-06
+        name: Multimodal Human Proficiency Estimation (SkillLens)
+        highlights:
+          - Contributed core ideas and experimental design for action-guided Prototype Dynamics Margin (PDM) and CORAL-based ordinal calibration.
+          - The proposed framework achieved **54.2%** accuracy on Ego-Exo4D, outperforming the strongest evaluated prior baseline (50.1%) by **4.1 percentage points**.
+
+      - position: Student Researcher
+        institution: Visual Intelligence Group, KIST
+        location: Seoul, Republic of Korea
+        start_date: 2026-03
+        end_date: Present
+        name: Federated Domain Generalization for Person Re-Identification
+        highlights:
+          - Investigated cross-domain generalization conflicts in federated person re-identification, motivated by scaling a deployed missing-person search system across heterogeneous municipal surveillance environments.
+          - Developed identity-ranking-based diagnostics and evaluated the effects of client updates on unseen-domain retrieval through leave-one-client-out experiments.
+
+      - position: Student Researcher
+        institution: Visual Intelligence Group, KIST
+        location: Seoul, Republic of Korea
+        start_date: 2025-12
+        end_date: 2026-03
+        name: Pose-Robust Representation Learning for Person Re-Identification
+        highlights:
+          - Designed and implemented *SwapMixer*, a generation-free feature-level augmentation method that combines identity representations with pose embeddings from different identities.
+
+      - position: Undergraduate Researcher
+        institution: Yonsei University
+        location: Seoul, Republic of Korea
+        start_date: 2024-08
+        end_date: 2024-12
+        name: Knowledge Distillation for Open-Vocabulary Object Detection
+        highlights:
+          - Analyzed BARON's contrastive learning framework and identified a mismatch between teacher and student similarity structures for bags of regions sampled around the same region proposal.
+          - Applied similarity-preserving knowledge distillation to align teacher–student relational representations, improving novel-class box AP50 on COCO by **+1.2 points** (23.1 → 24.3).
+
+    Publications:
+      - title: "Look Closer: Action-Guided Dense Visual Dynamics for Proficiency Estimation"
+        authors: D. Ahn, **H. Kim**, J.-H. Han, B. Ham, H. Choi, I.-J. Kim, and H. Kim
+        venue: CVPR 2026 Workshop on MOMA (Oral), Denver, USA
+        date: 2026-06
+        url: https://skill-lens.net/
+
+    Selected Course Projects:
+      - name: Self-Supervised Visual Representation Learning (SwAV)
+        highlights:
+          - Implemented a ResNet-18-based SwAV model and evaluated the effects of data augmentation and labeled-data availability on downstream CIFAR-100 classification.
 
     Awards:
       - title: Most Popular Award (3rd place)
-        date: 2024-11-01
+        date: 2024-11
         awarder: EE-Festival, Yonsei University
-        summary: For graduation research on improving open-vocabulary object detection.
 
-      - title: Academic Excellence Award
-        date: 2024-02-01
+      - title: Honors (top 10% of College of Engineering)
+        date: 2024-02
         awarder: Yonsei University
-        summary: For academic performance in the 2023 Fall semester.
+        summary: By semester GPA (4.18 / 4.30), Fall 2023.
 
-      - title: Outstanding Study-Group Team
-        date: 2023-07-01
+      - title: Outstanding Team, Study Group Program
+        date: 2023-07
+        awarder: Yonsei University
+        summary: Signals and Systems, Spring 2023.
+
+      - title: Honor Student
+        date: 2023-02
+        awarder: Inha University
+        summary: Semester academic honor; GPA 3.81 / 4.00, Fall 2022.
+
+      - title: Honor Student
+        date: 2022-08
+        awarder: Inha University
+        summary: Semester academic honor; GPA 4.00 / 4.00, Spring 2022.
+
+      - title: Honor Student
+        date: 2019-08
+        awarder: Inha University
+        summary: Semester academic honor; GPA 3.72 / 4.00, Spring 2019.
+
+    Scholarships:
+      - title: Yonsei–KIST Convergence Research Program Scholarship (Full tuition)
+        date: 2026-03
         awarder: Yonsei University
 
-      - title: Academic Excellence Award
-        date: 2022-06-01
+      - title: Yonsei–KIST Convergence Research Program Scholarship (Full tuition)
+        date: 2025-09
+        awarder: Yonsei University
+
+      - title: Graduate Student Research Assistantship (GSRA)
+        date: 2025-09
+        awarder: Yonsei University
+
+      - title: Truth Scholarship (merit-based)
+        date: 2024-09
+        awarder: Yonsei University
+
+      - title: Truth Scholarship (merit-based)
+        date: 2024-03
+        awarder: Yonsei University
+
+      - title: Excellence Scholarship (merit-based)
+        date: 2019-09
         awarder: Inha University
-        summary: For academic performance in the 2022 Spring semester.
 
-      - title: Academic Excellence Award
-        date: 2019-06-01
-        awarder: Inha University
-        summary: For academic performance in the 2019 Spring semester.
+    Notable Activities:
+      - name: Front-end Developer, AIID
+        start_date: 2026-03
+        end_date: Present
+        organization: KIST
+        summary: Designed and built the operator monitoring UI for a CCTV surveillance monitoring system.
 
-    Projects:
-      - name: Improving Open-Vocabulary Object Detection via Knowledge Distillation
-        url: /assets/pdf/graduation_research.pdf
-        summary: "Graduation Research (with Junghyun Park) · Yonsei University · 🏆 EE-Festival Most Popular Award (3rd place)."
-        highlights:
-          - Built on the BARON baseline; identified its limitations and applied knowledge distillation to surpass baseline performance.
+      - name: Indoor Person ReID Evaluation Data Collection
+        start_date: 2026-09
+        end_date: 2026-09
+        organization: KIST
+        summary: Designed indoor person ReID evaluation scenarios, installed cameras, and recorded laboratory participants to support subsequent model validation.
 
-      - name: Self-Supervised Image Classification with SwAV
-        url: /assets/pdf/swav_final_report.pdf
-        summary: "Deep Learning, Final Project · Yonsei University."
-        highlights:
-          - Online clustering with the Sinkhorn–Knopp algorithm on a ResNet-18 backbone; transferred a pretext-trained network to CIFAR-100 classification.
+      - name: Volunteer Teacher, Preschool Sunday School
+        start_date: 2023-02
+        end_date: Present
+        organization: Come & See
+        summary: Weekly classes for children aged 4–6.
 
-      - name: "Deep Learning Lab — 12 Implementation Projects"
-        summary: "Deep Learning · Yonsei University."
-        highlights:
-          - "VGG/ResNet, Spatial Transformer Network, FSRCNN, FCN, RetinaNet (Focal Loss), Grad-CAM, neural style transfer, DCGAN, CycleGAN, Seq2Seq with attention, network quantization, and self-supervised learning (SwAV)."
+      - name: Participant, LG Aimers AI Hackathon
+        start_date: 2024-01
+        end_date: 2024-02
+        organization: LG AI Research
+        summary: Built a B2B lead-conversion prediction model from MQL data.
 
-      - name: "Foundations of AI — ML Algorithms from Scratch"
-        summary: "Introduction to AI · Yonsei University."
-        highlights:
-          - "Lasso/Ridge regression, Decision Tree and AdaBoost, and modular neural networks — implemented without ML libraries."
+      - name: Participant, Winter DX Coding Camp (AI Challenge, Deep Learning Track)
+        start_date: 2024-01
+        end_date: 2024-02
+        organization: Yonsei University
+
+      - name: President, Moment (Basketball Club)
+        start_date: 2019-08
+        end_date: 2020-02
+        organization: Inha University
+        summary: Led 43 members, managed club operations and intercollegiate events; won the university club basketball tournament.
+
+      - name: Ammunition Specialist
+        start_date: 2020-03
+        end_date: 2021-09
+        organization: Republic of Korea Army
 
     Skills:
-      - name: Programming
+      - name: Programming & Tools
         level: Advanced
         icon: fa-solid fa-code
-        keywords: "Python, PyTorch, NumPy, Git, Linux"
+        keywords: "Python, C/C++, Bash, Git, Linux"
 
-      - name: Deep Learning
+      - name: Deep Learning & VLMs
         level: Advanced
         icon: fa-solid fa-brain
-        keywords: "Object Detection, Vision-Language Models, Generative Models, Self-Supervised Learning"
+        keywords: "PyTorch, CLIP, Qwen3-VL"
+
+      - name: Generative Models
+        level: Intermediate
+        icon: fa-solid fa-wand-magic-sparkles
+        keywords: "Qwen-Image-Edit (2509/2511), AnyPose LoRA, Multiple-Angles LoRA"
+
+      - name: AI-Assisted Coding
+        level: Advanced
+        icon: fa-solid fa-robot
+        keywords: "Claude Code"
 
     Languages:
       - name: Korean
         summary: "Native speaker"
 
       - name: English
-        summary: "TOEIC 895"
+        summary: "Professional working proficiency"
 
     Interests:
       - name: Research interests
         icon: fa-solid fa-eye
         keywords:
-          - Person ReID
           - Multimodal Learning
           - Vision-Language Models
-          - Open-Vocabulary Object Detection
-          - Deep Learning
+          - Temporal Action Understanding
+          - Person Re-Identification
+          - Domain Generalization
