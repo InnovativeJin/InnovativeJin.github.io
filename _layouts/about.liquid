@@ -35,7 +35,7 @@ layout: default
           {% endfor %}
         </div>
       {% endif %}
-      {% unless page.links == false %}
+      {% if page.links %}
         <ul class="g-hero__links">
           {% if site.data.socials.scholar_userid %}
             <li><a href="https://scholar.google.com/citations?user={{ site.data.socials.scholar_userid }}">Google Scholar</a></li>
@@ -47,7 +47,7 @@ layout: default
             <li><a href="https://www.linkedin.com/in/{{ site.data.socials.linkedin_username }}">LinkedIn</a></li>
           {% endif %}
         </ul>
-      {% endunless %}
+      {% endif %}
       {% if page.profile.image %}
         <div class="g-hero__photo">
           {% assign profile_image_path = page.profile.image | prepend: 'assets/img/' %}

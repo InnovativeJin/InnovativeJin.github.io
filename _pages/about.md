@@ -6,8 +6,8 @@ subtitle: M.S. candidate · <a href="https://vig.kist.re.kr">Visual Intelligence
 
 # ── Everything shown on the home page is edited here. ─────────────────────────
 # statement : the one line under your name (28px). Keep it to one sentence.
-# ctas      : the two pill buttons. style: primary | ghost
-# links     : set to false to hide the GitHub / LinkedIn row (read from _data/socials.yml)
+# ctas      : the pill buttons under the statement. style: ghost (outline) | primary (filled)
+# links     : true adds a small GitHub / LinkedIn text row (read from _data/socials.yml)
 # research  : the dark tile — headline and paragraph (body)
 # projects  : true shows _bibliography/projects.bib as cards; publications likewise from papers.bib
 # ─────────────────────────────────────────────────────────────────────────────
@@ -15,12 +15,20 @@ subtitle: M.S. candidate · <a href="https://vig.kist.re.kr">Visual Intelligence
 statement: Multimodal learning for predictive physical interaction understanding.
 
 ctas:
-  - label: View CV
+  - label: CV
     url: /cv/
-    style: primary
+    style: ghost
   - label: Email
     url: mailto:hyuk_jin@yonsei.ac.kr
     style: ghost
+  - label: LinkedIn
+    url: https://www.linkedin.com/in/hyukjin-kim-bb3372402
+    style: ghost
+  - label: GitHub
+    url: https://github.com/InnovativeJin
+    style: ghost
+
+links: false # the four buttons above cover the profile links; set true for a small GitHub / LinkedIn text row
 
 profile:
   image: prof_pic.jpg
