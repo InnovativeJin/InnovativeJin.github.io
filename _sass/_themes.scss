@@ -649,6 +649,60 @@ blockquote {
 }
 
 /* ---------------------------------------------------------------------------
+ * Guiding questions (dark Research tile)
+ * ------------------------------------------------------------------------- */
+.g-questions {
+  max-width: 640px;
+  margin: var(--g-space-xl) auto 0;
+  text-align: left;
+}
+
+.g-questions__intro {
+  margin: 0 0 var(--g-space-xs);
+  font-size: 14px;
+  line-height: 1.43;
+  letter-spacing: -0.224px;
+  color: var(--g-body-muted) !important;
+}
+
+.g-questions__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.g-questions__item {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  column-gap: var(--g-space-md);
+  align-items: baseline;
+  padding: var(--g-space-md) 0;
+  margin: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+
+  &:last-child {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  }
+}
+
+.g-questions__num {
+  font-size: 14px;
+  line-height: 1.43;
+  letter-spacing: -0.224px;
+  color: var(--g-body-muted) !important;
+  font-variant-numeric: tabular-nums;
+}
+
+.g-questions__text {
+  margin: 0;
+  font-family: var(--g-font-display);
+  font-size: 21px;
+  line-height: 1.33;
+  letter-spacing: 0.231px;
+  font-weight: 400;
+}
+
+/* ---------------------------------------------------------------------------
  * Publications — restyle jekyll-scholar output as Gallery cards
  * (`body` prefix: al_folio_core's _publications.scss loads after this file,
  * so these rules need one extra point of specificity to win ties.)

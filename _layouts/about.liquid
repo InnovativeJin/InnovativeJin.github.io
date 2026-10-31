@@ -80,6 +80,21 @@ layout: default
         {% if page.research.body %}
           <div class="g-tile__body">{{ page.research.body | markdownify }}</div>
         {% endif %}
+        {% if page.research.questions %}
+          <div class="g-questions">
+            {% if page.research.questions_intro %}
+              <p class="g-questions__intro">{{ page.research.questions_intro }}</p>
+            {% endif %}
+            <ol class="g-questions__list">
+              {% for q in page.research.questions %}
+                <li class="g-questions__item">
+                  <span class="g-questions__num">{{ forloop.index }}</span>
+                  <p class="g-questions__text">{{ q }}</p>
+                </li>
+              {% endfor %}
+            </ol>
+          </div>
+        {% endif %}
       </div>
     </section>
   {% endif %}

@@ -8,7 +8,7 @@ subtitle: M.S. candidate · <a href="https://vig.kist.re.kr">Visual Intelligence
 # statement : the one line under your name (28px). Keep it to one sentence.
 # ctas      : the pill buttons under the statement. style: ghost (outline) | primary (filled)
 # links     : true adds a small GitHub / LinkedIn text row (read from _data/socials.yml)
-# research  : the dark tile — headline and paragraph (body)
+# research  : the dark tile — headline, paragraph (body) and the guiding questions
 # projects  : true shows _bibliography/projects.bib as cards; publications likewise from papers.bib
 # ─────────────────────────────────────────────────────────────────────────────
 
@@ -36,14 +36,22 @@ profile:
 
 research:
   headline: Research
+  # Direction, not a record: wording follows the CV's Research Interests ("aims to", "interested in", "seek to").
   body: >
-    I develop multimodal models that understand how agents interact with objects and
-    reason about the physical consequences of their actions. Building on temporal action
-    analysis, vision–language retrieval, and domain generalization, I aim to learn
-    transferable representations of motion, object states, and interaction context from
-    multimodal observations, with the goal of anticipating future interactions and action
-    outcomes to support reliable decision-making in dynamic, real-world environments.
+    My research aims to develop multimodal models that understand how agents interact with
+    objects and predict the physical consequences of their actions. Building on my work in
+    temporal action analysis, vision–language retrieval, and domain generalization, I am
+    interested in learning transferable representations of motion, object states, and
+    interaction context from multimodal observations. Ultimately, I seek to anticipate future
+    interactions and action outcomes to support reliable decision-making in dynamic,
+    real-world environments.
+  questions_intro: Two questions guide this direction.
+  questions:
+    - How can multimodal models learn representations of physical scenes and human actions that generalize across environments?
+    - How can models use these representations to reason about the physical consequences of actions?
 
+# What has actually been done so far — entries marked selected={true} in _bibliography/projects.bib
+projects_lead: What I have worked on so far.
 projects: true # entries marked selected={true} in _bibliography/projects.bib
 selected_papers: true # papers marked selected={true} in _bibliography/papers.bib
 social: false # contact links live in the hero row and the footer
