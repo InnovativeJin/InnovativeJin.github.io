@@ -456,6 +456,16 @@ blockquote {
   background: transparent;
   color: var(--g-link) !important;
   border-color: var(--g-link);
+  transition:
+    transform 120ms ease-out,
+    background-color 120ms ease-out,
+    color 120ms ease-out;
+
+  &:hover,
+  &:focus-visible {
+    background: var(--g-link);
+    color: var(--g-on-primary) !important;
+  }
 }
 
 .g-btn--utility {
@@ -522,6 +532,12 @@ blockquote {
   .g-btn--ghost {
     color: var(--g-primary-on-dark) !important;
     border-color: var(--g-primary-on-dark);
+
+    &:hover,
+    &:focus-visible {
+      background: var(--g-primary-on-dark);
+      color: var(--g-surface-black) !important;
+    }
   }
 
   .g-tile__lead,
@@ -620,8 +636,12 @@ blockquote {
   }
 }
 
+.g-hero__ctas {
+  margin-top: var(--g-space-xl);
+}
+
 .g-hero__photo {
-  margin: var(--g-space-xxl) auto 0;
+  margin: var(--g-space-xl) auto 0;
   width: 240px;
   max-width: 60vw;
 

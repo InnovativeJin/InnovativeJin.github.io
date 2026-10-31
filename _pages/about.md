@@ -5,18 +5,15 @@ permalink: /
 subtitle: M.S. candidate · <a href="https://vig.kist.re.kr">Visual Intelligence Group, KIST</a> · <a href="https://cvlab.yonsei.ac.kr">Computer Vision Lab, Yonsei University</a>
 
 # ── Everything shown on the home page is edited here. ─────────────────────────
-# statement : the one line under your name (28px). Keep it to one sentence.
-# ctas      : the pill buttons under the statement. style: ghost (outline) | primary (filled)
+# ctas      : the pill buttons under the photo. style: ghost (outline, fills blue on hover) | primary (filled)
 # links     : true adds a small GitHub / LinkedIn text row (read from _data/socials.yml)
 # research  : the dark tile — headline, one-sentence lead and the guiding questions
 # projects  : true shows _bibliography/projects.bib in the groups listed under projects_groups
 # ─────────────────────────────────────────────────────────────────────────────
 
-statement: Multimodal learning for predictive physical interaction understanding.
-
 ctas:
   - label: CV
-    url: /cv/
+    url: /assets/pdf/Hyukjin_Kim_CV.pdf # opens the PDF; replace the file to update
     style: ghost
   - label: Email
     url: mailto:hyuk_jin@yonsei.ac.kr
@@ -63,6 +60,9 @@ announcements:
   limit: 5
 ---
 
-I am an M.S. candidate in the **YU–KIST cooperative graduate program**, jointly advised by **Dr.&nbsp;Heeseung Choi** at the [Visual Intelligence Group, KIST](https://vig.kist.re.kr) and **Prof.&nbsp;Bumsub Ham** at the [Computer Vision Lab, Yonsei University](https://cvlab.yonsei.ac.kr). My research is conducted at KIST.
+I am an M.S. candidate in the **YU–KIST cooperative graduate program**,<br>
+jointly advised by **Dr.&nbsp;Heeseung Choi** at the [Visual Intelligence Group, KIST](https://vig.kist.re.kr)<br>
+and **Prof.&nbsp;Bumsub Ham** at the [Computer Vision Lab, Yonsei University](https://cvlab.yonsei.ac.kr).<br>
+My research is conducted at KIST. I am applying to Ph.D. programs for Fall 2027.
 
-Before graduate school I studied Electrical & Electronic Engineering at Yonsei University (B.S., 2025). My capstone project improved open-vocabulary object detection with knowledge distillation.
+At KIST, I have worked on federated domain generalization and text-to-image retrieval for person re-identification, and on [SkillLens](https://skill-lens.net/), a multimodal proficiency-estimation framework accepted as an oral at the [CVPR 2026 Workshop on MOMA](https://sites.google.com/view/moma-cvpr-2026/). I hold a B.S. in Electrical and Electronic Engineering from Yonsei University, where my capstone research on open-vocabulary object detection with Junghyun Park received the Most Popular Award (3rd place) at the 2024 EE-Festival.

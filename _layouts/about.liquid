@@ -23,8 +23,23 @@ layout: default
       {% if page.statement %}
         <p class="g-hero__statement">{{ page.statement }}</p>
       {% endif %}
+      {% if page.profile.image %}
+        <div class="g-hero__photo">
+          {% assign profile_image_path = page.profile.image | prepend: 'assets/img/' %}
+          {% assign profile_alt = page.profile.image_alt | default: 'Portrait' %}
+          {%
+            include figure.liquid
+            loading="eager"
+            path=profile_image_path
+            class="g-hero__img"
+            sizes="240px"
+            alt=profile_alt
+            cache_bust=true
+          %}
+        </div>
+      {% endif %}
       {% if page.ctas %}
-        <div class="g-tile__ctas">
+        <div class="g-tile__ctas g-hero__ctas">
           {% for cta in page.ctas %}
             {% if cta.url contains '://' or cta.url contains 'mailto:' %}
               {% assign cta_url = cta.url %}
@@ -47,21 +62,6 @@ layout: default
             <li><a href="https://www.linkedin.com/in/{{ site.data.socials.linkedin_username }}">LinkedIn</a></li>
           {% endif %}
         </ul>
-      {% endif %}
-      {% if page.profile.image %}
-        <div class="g-hero__photo">
-          {% assign profile_image_path = page.profile.image | prepend: 'assets/img/' %}
-          {% assign profile_alt = page.profile.image_alt | default: 'Portrait' %}
-          {%
-            include figure.liquid
-            loading="eager"
-            path=profile_image_path
-            class="g-hero__img"
-            sizes="240px"
-            alt=profile_alt
-            cache_bust=true
-          %}
-        </div>
       {% endif %}
       {% if content != blank %}
         <div class="g-hero__bio">{{ content }}</div>
